@@ -1,0 +1,53 @@
+{
+  "name": "webpack-wizard",
+  "version": "0.0.1",
+  "description": "Generate SPA webpack config from... a smaller config",
+  "author": {
+    "name": "Kamil Mielnik",
+    "email": "kamil.adam.mielnik@gmail.com",
+    "url": "http://kamilmielnik.com/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamilmielnik/webpack-wizard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kamilmielnik/webpack-wizard/issues"
+  },
+  "homepage": "https://github.com/kamilmielnik/webpack-wizard#readme",
+  "keywords": [
+    "webpack",
+    "wizard",
+    "config",
+    "node",
+    "node.js"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "bin": {
+    "webpack-wizard": "./bin/webpack-wizard.js",
+    "webpack-wizard-dev": "./bin/webpack-wizard-dev.js"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "copy-webpack-plugin": "^4.2.0",
+    "css-loader": "^0.28.7",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "image-webpack-loader": "^3.4.2",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
+    "react-hot-loader": "^3.1.1",
+    "resolve-url-loader": "^2.1.1",
+    "sass-loader": "^6.0.6",
+    "style-ext-html-webpack-plugin": "^3.4.3",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.20.0"
+  }
+}
