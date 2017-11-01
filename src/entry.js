@@ -3,9 +3,9 @@ module.exports = (wizardConfig) => {
     return [
       'webpack-hot-middleware/client',
       'react-hot-loader/patch',
-      wizardConfig.input.files.jsDev
+      wizardConfig.input.jsDev
     ];
   }
 
-  return wizardConfig.input.files.js;
+  return wizardConfig.input.js;
 };

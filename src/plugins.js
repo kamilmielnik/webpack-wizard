@@ -15,9 +15,9 @@ const createDefinePlugin = (wizardConfig) => new webpack.DefinePlugin({
 });
 
 const createHtmlPlugin = (wizardConfig) => new HtmlWebpackPlugin({
-  template: wizardConfig.input.files.html,
+  template: wizardConfig.input.html,
   filename: wizardConfig.output.html,
-  favicon: wizardConfig.input.files.favicon,
+  favicon: wizardConfig.input.favicon,
   inject: true,
   hash: true,
   files: {
@@ -55,7 +55,7 @@ const createUglifyPlugin = () => new webpack.optimize.UglifyJsPlugin({
 
 const createCopyPlugin = (wizardConfig) => new CopyWebpackPlugin([
   {
-    from: wizardConfig.input.files.html
+    from: wizardConfig.input.html
   }
 ]);
 

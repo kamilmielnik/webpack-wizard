@@ -94,9 +94,9 @@ const createScssRules = (wizardConfig, extractSass) => ({
       {
         loader: 'sass-loader',
         options: {
-          data: `@import '${wizardConfig.input.files.styles}';`,
+          data: `@import '${wizardConfig.input.stylesGlobals}';`,
           includePaths: [
-            wizardConfig.input.directories.styles
+            wizardConfig.input.styles
           ],
           sourceMap: false
         }
@@ -107,7 +107,7 @@ const createScssRules = (wizardConfig, extractSass) => ({
 
 const createJsRules = (wizardConfig) => ({
   test: /\.js$/,
-  include: wizardConfig.input.directories.modules,
+  include: wizardConfig.input.modules,
   use: {
     loader: 'babel-loader'
   }

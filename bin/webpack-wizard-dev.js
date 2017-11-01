@@ -34,7 +34,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (request, response) => {
-  response.sendFile(webpackWizardConfig.input.files.html);
+  response.sendFile(webpackWizardConfig.input.html);
 });
 
 app.listen(port, host, (error) => {
