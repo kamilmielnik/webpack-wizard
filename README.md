@@ -5,7 +5,7 @@ Webpack Wizard is an opinionated build process tool, that is meant to:
   - you can get rid of most of your `devDependencies`, because `webpack-wizard` handles these things for you
 - be a facade for webpack config by providing the defaults for:
   - HMR
-  - Babel
+  - Babel (with JSX)
   - SCSS
   - CSS modules
   - EJS templates
@@ -98,7 +98,11 @@ Run `webpack-wizard-dev` in root directory of your project to start a developmen
 Run `webpack-wizard` in root directory of your project to start production build.
 
 ## Config
-`webpack.wizard.config.js` should be a JavaScript module that exports an `Object` with the following attributes:
+`webpack.wizard.config.js` should be a JavaScript module that exports an `Object` with attributes described below.
+
+All paths you provide should be absolute, except for `stylesGlobals` option.
+
+All default paths will be relative to your project root directory (assuming this will be your current working directory when running `webpack-wizard` or `webpack-wizard-dev`).
 
 | Name      | Type                 | Default value                            | Description                                                                                                      |
 |-----------|----------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -107,29 +111,28 @@ Run `webpack-wizard` in root directory of your project to start production build
 | `devHost` | `String`             | `'localhost'`                            | development server host                                                                                          |
 | `devPort` | `Number`             | `3000`                                   | development server port                                                                                          |
 | `env`     | `Object`             | `{}`                                     | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
-| `input`   | `Object` (see below) | `{}`                                     | object that holds paths for your sources                                                                         |
-| `output`  | `Object` (see below) | `{}`                                     | object that holds paths for what will be produced by webpack                                                     |
+| `input`   | `Object` (see below) | `{}`                                     | object that holds absolute paths for your sources                                                                |
+| `output`  | `Object` (see below) | `{}`                                     | object that holds absolute paths for what will be produced by webpack                                            |
 
 ### input
 `input` should be an `Object` with the following attributes:
 
-| Name            | Type     | Default value        | Description                                                                                                                   |
-|-----------------|----------|----------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| `favicon`       | `String` | `'favicon.ico'`      | path to your favicon                                                                                                          |
-| `html`          | `String` | `'index.html'`       | path to your main HTML file                                                                                                   |
-| `js`            | `String` | `'src/index.js'`     | path to your entry production JS file                                                                                         |
-| `jsDev`         | `String` | `'src/index-dev.js'` | path to your entry development JS file                                                                                        |
-| `modules`       | `Array`  | `[ 'src' ]`          | array of paths that will go to `resolve.modules` in webpack config                                                            |
-| `styles`        | `String` | `'src/styles'`       | path to directory with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
-| `stylesGlobals` | `String` | `'globals.scss'`     | name of file in `styles` directory, that will be imported in every SCSS file in your project                                  |
-
+| Name            | Type     | Default value        | Description                                                                                                                            |
+|-----------------|----------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| `favicon`       | `String` | `'favicon.ico'`      | absolute path to your favicon                                                                                                          |
+| `html`          | `String` | `'index.html'`       | absolute path to your main HTML file                                                                                                   |
+| `js`            | `String` | `'src/index.js'`     | absolute path to your entry production JS file                                                                                         |
+| `jsDev`         | `String` | `'src/index-dev.js'` | absolute path to your entry development JS file                                                                                        |
+| `modules`       | `Array`  | `[ 'src' ]`          | array of absolute paths that will go to `resolve.modules` in webpack config                                                            |
+| `styles`        | `String` | `'src/styles'`       | absolute path to directory with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
+| `stylesGlobals` | `String` | `'globals.scss'`     | name of file in `styles` directory, that will be imported in every SCSS file in your project                                           |
 
 ### output
 `output` should be an `Object` with the following attributes:
 
 | Name        | Type                 | Default value  | Description                                                                                                      |
 |-------------|----------------------|----------------|------------------------------------------------------------------------------------------------------------------|
-| `directory` | `String`             | `'dist'`       | output directory                                                                                                 |
+| `directory` | `String`             | `'dist'`       | absolute path to output directory                                                                                |
 | `css`       | `String`             | `'styles.css'` | name of CSS file which will be placed in `directory`                                                             |
 | `html`      | `String`             | `'index.html'` | name of HTML file which will be placed in `directory`                                                            |
 | `js`        | `String`             | `'bundle.js'`  | name of JS file which will be placed in `directory`                                                              |

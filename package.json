@@ -1,6 +1,6 @@
 {
   "name": "webpack-wizard",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Forget about maintaining webpack config and related dependencies",
   "author": {
     "name": "Kamil Mielnik",
@@ -33,6 +33,7 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",

@@ -117,6 +117,7 @@ const createJsRules = (wizardConfig) => ({
         [ 'stage-0' ]
       ],
       plugins: [
+        'babel-plugin-transform-decorators-legacy',
         'react-hot-loader/babel'
       ]
     }
