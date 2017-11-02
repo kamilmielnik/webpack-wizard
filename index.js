@@ -31,11 +31,9 @@ const applyConfigDefaults = (wizardConfig) => ({
 const applyInputDefaults = (input) => ({
   favicon: input.favicon || 'favicon.ico',
   html: input.html || 'index.html',
-  js: input.js || 'index.js',
-  jsDev: input.jsDev || 'index-dev.js',
-  modules: input.modules || [
-    'src'
-  ],
+  js: input.js || 'src/index.js',
+  jsDev: input.jsDev || 'src/index-dev.js',
+  modules: input.modules || [ 'src' ],
   styles: input.styles || 'src/styles',
   stylesGlobals: input.stylesGlobals || 'globals.scss'
 });

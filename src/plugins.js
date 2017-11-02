@@ -4,11 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (wizardConfig) => ([
+module.exports = (wizardConfig) => [
   createDefinePlugin(wizardConfig),
   createHtmlPlugin(wizardConfig),
   ...(wizardConfig.isProd ? createProdPlugins : createDevPlugins)(wizardConfig)
-]);
+];
 
 const createDefinePlugin = (wizardConfig) => new webpack.DefinePlugin({
   'process.env': wizardConfig.env

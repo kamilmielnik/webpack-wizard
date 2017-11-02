@@ -11,16 +11,14 @@ Webpack Wizard is an opinionated build process tool, that is meant to:
   - EJS templates
 - all you really need to do is to provide a config file with paths for all your sources
 
-
 ## Usage
 ### Install
 `npm install --save-dev webpack-wizard`
 
 ### Create config
+Create `webpack-wizard.config.js` in root of your project. This file will be transformed into webpack config on the fly. This file needs to export an object with the following properties:
 
-Create `webpack-wizard.config.js` in root of your project. This file will be transformed into webpack config on the fly.
-
-#### Options
+#### Config
 | Name      | Type                 | Default value | Required | Description                                                                                                      |
 |-----------|----------------------|---------------|----------|------------------------------------------------------------------------------------------------------------------|
 | `isDev`   | `Boolean`            | `false`       | yes      | development build flag                                                                                           |
@@ -30,19 +28,19 @@ Create `webpack-wizard.config.js` in root of your project. This file will be tra
 | `env`     | `Object`             | `{}`          | no       | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
 | `input`   | `Object` (see below) | `{}`          | no       | object that holds paths for your sources                                                                         |
 | `output`  | `Object` (see below) | `{}`          | no       | object that holds paths for what will be produced by webpack
+
 ##### input
 `input` should be an `Object` with the following attributes
 
-
 | Name            | Type     | Default value    | Required | Description                                                                                                                   |
 |-----------------|----------|------------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
-| `favicon`       | `String` | `'favicon.ico'`  | no       | path to your favicon                                                                                                          |
-| `html`          | `String` | `'index.html'`   | no       | path to your main HTML file                                                                                                   |
-| `js`            | `String` | `'index.js'`     | no       | path to your entry production JS file                                                                                         |
-| `jsDev`         | `String` | `'index-dev.js'` | no       | path to your entry development JS file                                                                                        |
-| `modules`       | `Array`  | `['src']`      | no       | array of paths that will go to `resolve.modules` in webpack config                                                            |
-| `styles`        | `String` | `'src/styles'`   | no       | path to directory with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
-| `stylesGlobals` | `String` | `'globals.scss'` | no       | name of file in `styles` directory, that will be imported in every SCSS file in your project                                  |
+| `favicon`       | `String` | `'favicon.ico'`      | no       | path to your favicon                                                                                                          |
+| `html`          | `String` | `'index.html'`       | no       | path to your main HTML file                                                                                                   |
+| `js`            | `String` | `'src/index.js'`     | no       | path to your entry production JS file                                                                                         |
+| `jsDev`         | `String` | `'src/index-dev.js'` | no       | path to your entry development JS file                                                                                        |
+| `modules`       | `Array`  | `['src']`            | no       | array of paths that will go to `resolve.modules` in webpack config                                                            |
+| `styles`        | `String` | `'src/styles'`       | no       | path to directory with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
+| `stylesGlobals` | `String` | `'globals.scss'`     | no       | name of file in `styles` directory, that will be imported in every SCSS file in your project                                  |
 
 
 ##### output
@@ -50,10 +48,28 @@ Create `webpack-wizard.config.js` in root of your project. This file will be tra
 
 | Name        | Type                 | Default value | Required | Description                                                                                                      |
 |-------------|----------------------|---------------|----------|------------------------------------------------------------------------------------------------------------------|
-| `directory` | `String`             | `'dist'`   | yes      | output directory                                                                                                 |
-| `css`       | `String`             | `'styles.css'`   | yes      | name of CSS file which will be placed in `directory`                                                             |
-| `html`      | `String`             | `'index.html'`   | yes      | name of HTML file which will be placed in `directory`                                                            |
-| `js`        | `String`             | `'bundle.js'`   | yes      | name of JS file which will be placed in `directory`                                                              |
+| `directory` | `String`             | `'dist'`      | yes      | output directory                                                                                                 |
+| `css`       | `String`             | `'styles.css'`| yes      | name of CSS file which will be placed in `directory`                                                             |
+| `html`      | `String`             | `'index.html'`| yes      | name of HTML file which will be placed in `directory`                                                            |
+| `js`        | `String`             | `'bundle.js'` | yes      | name of JS file which will be placed in `directory`                                                              |
+
+
+#### Project structure for the default config
+```
+- dist/ /* generated when running `webpack-wizard` */
+  - bundle.js
+  - index.html
+  - styles.css
+- node_modules/
+- src/
+  - styles/
+    - globals.scss
+  - index.js
+  - index-dev.js
+- favicon.ico
+- index.html
+- webpack-wizard.config.js
+```
 
 #### Example
 ```
