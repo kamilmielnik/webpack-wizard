@@ -31,6 +31,9 @@ Create `webpack-wizard.config.js` in root of your project. This file will be tra
 | `input`   | `Object` (see below) | `{}`          | no       | object that holds paths for your sources                                                                         |
 | `output`  | `Object` (see below) | `{}`          | no       | object that holds paths for what will be produced by webpack
 ##### input
+`input` should be an `Object` with the following attributes
+
+
 | Name            | Type     | Default value    | Required | Description                                                                                                                   |
 |-----------------|----------|------------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
 | `favicon`       | `String` | `'favicon.ico'`  | no       | path to your favicon                                                                                                          |
@@ -44,6 +47,7 @@ Create `webpack-wizard.config.js` in root of your project. This file will be tra
 
 ##### output
 `output` should be an `Object` with the following attributes
+
 | Name        | Type                 | Default value | Required | Description                                                                                                      |
 |-------------|----------------------|---------------|----------|------------------------------------------------------------------------------------------------------------------|
 | `directory` | `String`             | `'dist'`   | yes      | output directory                                                                                                 |
