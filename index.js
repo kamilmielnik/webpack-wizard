@@ -36,7 +36,7 @@ const applyInputDefaults = (input) => ({
   modules: input.modules || [
     'src'
   ],
-  styles: input.styles || 'src/styles'
+  styles: input.styles || 'src/styles',
   stylesGlobals: input.stylesGlobals || 'globals.scss'
 });
 

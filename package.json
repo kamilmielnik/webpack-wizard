@@ -1,7 +1,7 @@
 {
   "name": "webpack-wizard",
   "version": "0.0.1",
-  "description": "Generate SPA webpack config from... a smaller config",
+  "description": "Shield yourself from webpack config & its dependencies",
   "author": {
     "name": "Kamil Mielnik",
     "email": "kamil.adam.mielnik@gmail.com",
