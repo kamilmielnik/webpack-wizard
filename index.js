@@ -1,3 +1,4 @@
+const path = require('path');
 const createEntryConfig = require('./src/entry');
 const createModuleConfig = require('./src/module');
 const createOutputConfig = require('./src/output');
@@ -29,20 +30,22 @@ const applyConfigDefaults = (wizardConfig = {}) => ({
 });
 
 const applyInputDefaults = (input) => ({
-  favicon: input.favicon || 'favicon.ico',
-  html: input.html || 'index.html',
-  js: input.js || 'src/index.js',
-  jsDev: input.jsDev || 'src/index-dev.js',
-  modules: input.modules || [ 'src' ],
-  styles: input.styles || 'src/styles',
+  favicon: input.favicon || resolveAbsolutePath('favicon.ico'),
+  html: input.html || resolveAbsolutePath('index.html'),
+  js: input.js || resolveAbsolutePath('src/index.js'),
+  jsDev: input.jsDev || resolveAbsolutePath('src/index-dev.js'),
+  modules: input.modules || [ resolveAbsolutePath('src') ],
+  styles: input.styles || resolveAbsolutePath('src/styles'),
   stylesGlobals: input.stylesGlobals || 'globals.scss'
 });
 
 const applyOutputDefaults = (output) => ({
-  directory: output.directory || 'dist',
+  directory: output.directory || resolveAbsolutePath('dist'),
   css: output.css || 'styles.css',
   html: output.html || 'index.html',
   js: output.js || 'bundle.js'
 });
+
+const resolveAbsolutePath = (relativePath) => path.resolve(process.cwd(), relativePath);
 
 module.exports = webpackWizard;
