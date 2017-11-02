@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
+const chalk = require('chalk');
+const express = require('express');
 const path = require('path');
 const webpack = require('webpack');
-const express = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackWizard = require('../index.js');
+const readConfig = require('./read-config');
 
-const cwd = process.cwd();
-const webpackWizardConfigPath = path.resolve(cwd, 'webpack-wizard.config.js');
-const webpackWizardConfig = require(webpackWizardConfigPath);
+const webpackWizardConfig = readConfig();
 const webpackConfig = webpackWizard(webpackWizardConfig);
 const compiler = webpack(webpackConfig);
 
@@ -39,8 +39,7 @@ app.get('*', (request, response) => {
 
 app.listen(port, host, (error) => {
   if (error) {
-    console.log(error);
-    return;
+    return console.log(chalk.red(error));
   }
 
   console.log(`App is listening at http://${host}:${port}`);
