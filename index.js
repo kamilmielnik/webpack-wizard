@@ -18,9 +18,9 @@ const webpackWizard = (config) => {
   return webpackConfig;
 };
 
-const applyConfigDefaults = (wizardConfig) => ({
-  isDev: wizardConfig.isDev || false,
-  isProd: wizardConfig.isProd || false,
+const applyConfigDefaults = (wizardConfig = {}) => ({
+  isDev: wizardConfig.isDev || process.env.NODE_ENV === 'development',
+  isProd: wizardConfig.isProd || process.env.NODE_ENV === 'production',
   devHost: wizardConfig.devHost || 'localhost',
   devPort: wizardConfig.devPort || 3000,
   env: wizardConfig.env || {},

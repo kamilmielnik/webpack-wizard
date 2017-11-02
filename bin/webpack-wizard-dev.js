@@ -18,12 +18,7 @@ const host = webpackWizardConfig.devHost || 'localhost';
 const port = webpackWizardConfig.devPort || 3000;
 
 app.use(webpackDevMiddleware(compiler, {
-  compress: true,
   noInfo: true,
-  historyApiFallback: true,
-  hot: true,
-  inline: true,
-  open: true,
   publicPath: webpackConfig.output.publicPath,
   watchOptions: {
     aggregateTimeout: 300,
