@@ -109,6 +109,16 @@ const createJsRules = (wizardConfig) => ({
   test: /\.js$/,
   include: wizardConfig.input.modules,
   use: {
-    loader: 'babel-loader'
+    loader: 'babel-loader',
+    options: {
+      presets: [
+        [ 'es2015', { modules: false } ],
+        [ 'react' ],
+        [ 'stage-0' ]
+      ],
+      plugins: [
+        'react-hot-loader/babel'
+      ]
+    }
   }
 });

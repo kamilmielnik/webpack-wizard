@@ -34,22 +34,36 @@ Webpack Wizard comes with defaults. You do not need a config. But you can create
 - webpack-wizard.config.js
 ```
 
+### Add npm scripts
+It's recommended to use `webpack-wizard` & `webpack-wizard-dev` scripts in `package.json` with [better-npm-run](https://github.com/benoror/better-npm-run) (`npm install better-npm-run --save-dev`), so that you can easily (and cross-platform) provide appropriate `NODE_ENV` env variable.
+```javascript
+...
+"scripts": {
+  "build": "better-npm-run build",
+  "start": "better-npm-run start"
+},
+"betterScripts": {
+  "build": {
+    "command": "webpack-wizard",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "start": {
+    "command": "webpack-wizard-dev",
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+},
+...
+```
+
 ### Development server
 Run `webpack-wizard-dev` in root directory of your project to start a development server.
 
 ### Production build
 Run `webpack-wizard` in root directory of your project to start production build.
-
-#### Add npm scripts (optional)
-It's recommended to use `webpack-wizard` & `webpack-wizard-dev` scripts in `package.json`, e.g.
-```javascript
-...
-"scripts": {
-  "build": "webpack-wizard",
-  "start": "webpack-wizard-dev"
-},
-...
-```
 
 ## Config
 `webpack.wizard.config.js` should be a JavaScript module that exports an `Object` with the following attributes:
@@ -88,7 +102,7 @@ It's recommended to use `webpack-wizard` & `webpack-wizard-dev` scripts in `pack
 | `html`      | `String`             | `'index.html'` | name of HTML file which will be placed in `directory`                                                            |
 | `js`        | `String`             | `'bundle.js'`  | name of JS file which will be placed in `directory`                                                              |
 
-#### Complete example
+### Complete example
 ```javascript
 const path = require('path');
 
