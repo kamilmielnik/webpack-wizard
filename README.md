@@ -10,6 +10,38 @@ Webpack Wizard is an opinionated build process tool, that is meant to:
   - CSS modules
   - EJS templates
 
+All you have to do after installing is one of the following:
+- set `NODE_ENV` env variable to `production` or `development`
+- create `webpack-wizard.config.js` file with `isDev` && `isProd` options (see "Config" section below)
+
+## What's inside
+- webpack
+- babel
+  - babel-core
+  - babel-preset-es2015
+  - babel-preset-react
+  - babel-preset-stage-0
+- webpack plugins
+  - copy-webpack-plugin
+  - extract-text-webpack-plugin
+  - html-webpack-plugin
+  - style-ext-html-webpack-plugin
+- webpack loaders
+  - babel-loader
+  - css-loader
+  - file-loader
+  - image-webpack-loader
+  - postcss-loader
+  - resolve-url-loader
+  - sass-loader
+  - style-loader
+- dev server
+  - express
+  - react-hot-loader
+  - webpack-dev-middleware
+  - webpack-hot-middleware
+- node-sass
+
 ## Usage
 ### Install
 `npm install webpack-wizard --save-dev`
