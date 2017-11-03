@@ -172,3 +172,19 @@ module.exports = {
 };
 
 ```
+
+### Customization
+If you need to access/modify webpack config generated from your `webpack-wizard.config.js` you can modify `webpack-wizard.config.js` in the following way:
+```javascript
+const webpackWizard = require('webpack-wizard');
+
+const webpackWizardConfig = {
+  /* ... */
+};
+
+const webpackConfig = webpackWizard(webpackWizardConfig);
+
+/* do stuff to webpackConfig */
+
+module.exports = webpackConfig;
+```
