@@ -14,6 +14,8 @@ All you have to do after installing is one of the following:
 - set `NODE_ENV` env variable to `production` or `development`
 - create `webpack-wizard.config.js` file with `isDev` && `isProd` options (see "Config" section below)
 
+It can also be used as an alternative to a boilerplate, but without polluting your codebase. Bring your own libraries.
+
 ## What's inside
 - webpack
 - babel
@@ -64,7 +66,6 @@ Webpack Wizard comes with defaults. You do not need a config. But you can create
   - index-dev.js
 - favicon.ico
 - index.html
-- webpack-wizard.config.js
 ```
 
 ### Add npm scripts
@@ -172,6 +173,20 @@ module.exports = {
 };
 
 ```
+
+### Real-world examples
+  - my CV
+    - [www](http://kamilmielnik.com/)
+    - [github](https://github.com/kamilmielnik/cv/)
+    - [webpack-wizard.config.js](https://github.com/kamilmielnik/cv/blob/master/webpack-wizard.config.js)
+  - Scrabble Solver
+    - [www](http://scrabble-solver.kamilmielnik.com/)
+    - [github](https://github.com/kamilmielnik/scrabble-solver/blob/master/scrabble-solver-frontend)
+    - [webpack-wizard.config.js](https://github.com/kamilmielnik/scrabble-solver/blob/master/scrabble-solver-frontend/webpack-wizard.config.js)
+  - Sprouts
+    - [www](http://sprouts.kamilmielnik.com/)
+    - [github](https://github.com/kamilmielnik/sprouts/)
+    - [webpack-wizard.config.js](https://github.com/kamilmielnik/sprouts/blob/master/webpack-wizard.config.js)
 
 ### Customization
 If you need to access/modify webpack config generated from your `webpack-wizard.config.js` you can modify `webpack-wizard.config.js` in the following way:

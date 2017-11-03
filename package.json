@@ -1,7 +1,7 @@
 {
   "name": "webpack-wizard",
   "version": "0.0.4",
-  "description": "Forget about maintaining webpack config and related dependencies",
+  "description": "Forget about maintaining webpack build process",
   "author": {
     "name": "Kamil Mielnik",
     "email": "kamil.adam.mielnik@gmail.com",
