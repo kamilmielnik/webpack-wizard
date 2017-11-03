@@ -18,6 +18,7 @@ All you have to do after installing is one of the following:
 - webpack
 - babel
   - babel-core
+  - babel-plugin-transform-decorators-legacy
   - babel-preset-es2015
   - babel-preset-react
   - babel-preset-stage-0
