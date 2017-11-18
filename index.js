@@ -4,6 +4,7 @@ const createModuleConfig = require('./src/module');
 const createOutputConfig = require('./src/output');
 const createPluginsConfig = require('./src/plugins');
 const createResolveConfig = require('./src/resolve');
+const resolveFilePathIfExists = require('./src/utils').resolveFilePathIfExists;
 
 const WEBPACK_CONFIG = Symbol('webpack-wizard-config');
 
@@ -52,6 +53,6 @@ const applyOutputDefaults = (output) => ({
   js: output.js || 'bundle.js'
 });
 
-const resolveAbsolutePath = (relativePath) => path.resolve(process.cwd(), relativePath);
+const resolveAbsolutePath = (relativePath) => resolveFilePathIfExists(process.cwd(), relativePath);
 
 module.exports = webpackWizard;

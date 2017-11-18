@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const resolveFilePathIfExists = require('./utils').resolveFilePathIfExists;
 
 const postcssOptions = {
   config: {
@@ -70,40 +71,43 @@ const createCssRules = (wizardConfig, extractSass) => ({
   })
 });
 
-const createScssRules = (wizardConfig, extractSass) => ({
-  test: /\.scss$/,
-  use: extractSass({
-    fallback: 'style-loader',
-    use: [
-      {
-        loader: 'css-loader',
-        options: {
-          camelCase: true,
-          localIdentName: '[local]-[hash:base64:5]',
-          minimize: wizardConfig.isProd,
-          modules: true
+const createScssRules = (wizardConfig, extractSass) => {
+  const globalStylesPath = resolveFilePathIfExists(wizardConfig.input.stylesGlobals);
+  return {
+    test: /\.scss$/,
+    use: extractSass({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            camelCase: true,
+            localIdentName: '[local]-[hash:base64:5]',
+            minimize: wizardConfig.isProd,
+            modules: true
+          }
+        },
+        {
+          loader: 'postcss-loader',
+          options: postcssOptions
+        },
+        {
+          loader: 'resolve-url-loader'
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            data: globalStylesPath && `@import '${globalStylesPath}';`,
+            includePaths: [
+              wizardConfig.input.styles
+            ],
+            sourceMap: false
+          }
         }
-      },
-      {
-        loader: 'postcss-loader',
-        options: postcssOptions
-      },
-      {
-        loader: 'resolve-url-loader'
-      },
-      {
-        loader: 'sass-loader',
-        options: {
-          data: `@import '${wizardConfig.input.stylesGlobals}';`,
-          includePaths: [
-            wizardConfig.input.styles
-          ],
-          sourceMap: false
-        }
-      }
-    ]
-  })
-});
+      ]
+    })
+  };
+};
 
 const createJsRules = (wizardConfig) => ({
   test: /\.js$/,
