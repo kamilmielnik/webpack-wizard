@@ -16,7 +16,6 @@ const compiler = webpack(webpackConfig);
 const app = express();
 const host = webpackWizardConfig.devHost;
 const port = webpackWizardConfig.devPort;
-const htmlPath = webpackWizardConfig.input.html;
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
@@ -30,7 +29,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (request, response) => {
-  response.sendFile(htmlPath);
+  response.sendFile(webpackWizardConfig.input.html);
 });
 
 app.listen(port, host, (error) => {

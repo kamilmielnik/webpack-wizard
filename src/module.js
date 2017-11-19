@@ -1,5 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const resolveFilePathIfExists = require('./utils').resolveFilePathIfExists;
+const resolveFilePathIfExists = require('./utils/resolve-file-path-if-exists');
 
 const postcssOptions = {
   config: {

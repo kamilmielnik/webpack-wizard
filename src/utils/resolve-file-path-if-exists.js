@@ -7,6 +7,4 @@ const resolveFilePathIfExists = (...args) => {
   return fileExists ? filePath : undefined;
 };
 
-module.exports = {
-  resolveFilePathIfExists: resolveFilePathIfExists
-};
+module.exports = resolveFilePathIfExists;
