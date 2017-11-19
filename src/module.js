@@ -1,5 +1,4 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const resolveFilePathIfExists = require('./utils/resolve-file-path-if-exists');
 
 const postcssOptions = {
   config: {
@@ -72,7 +71,7 @@ const createCssRules = (wizardConfig, extractSass) => ({
 });
 
 const createScssRules = (wizardConfig, extractSass) => {
-  const globalStylesPath = resolveFilePathIfExists(wizardConfig.input.stylesGlobals);
+  const stylesGlobals = wizardConfig.input.stylesGlobals;
   return {
     test: /\.scss$/,
     use: extractSass({
@@ -97,7 +96,7 @@ const createScssRules = (wizardConfig, extractSass) => {
         {
           loader: 'sass-loader',
           options: {
-            data: globalStylesPath && `@import '${globalStylesPath}';`,
+            data: stylesGlobals && `@import '${stylesGlobals}';`,
             includePaths: [
               wizardConfig.input.styles
             ],

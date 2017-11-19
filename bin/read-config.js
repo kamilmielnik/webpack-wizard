@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
-const defaultWebpackWizardConfig = require('./default-webpack-wizard-config');
+const applyWizardConfigDefaults = require('../apply-wizard-config-defaults');
 
 const CONFIG_FILENAME = 'webpack-wizard.config.js';
 
@@ -12,9 +12,9 @@ module.exports = () => {
 
   if (!configFileExists) {
     console.log(chalk.yellow(`"${webpackWizardConfigPath}" does not exist, using the default config`));
-    return defaultWebpackWizardConfig;
+    return applyWizardConfigDefaults({});
   }
 
-  const webpackWizardConfig = require(webpackWizardConfigPath);
-  return webpackWizardConfig;
+  const wizardConfig = require(webpackWizardConfigPath);
+  return applyWizardConfigDefaults(wizardConfig);
 };
