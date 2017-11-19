@@ -1,4 +1,4 @@
-const resolveAbsolutePath = require('./src/utils/resolve-absolute-path');
+const resolveCwdPathIfExists = require('./src/utils/resolve-cwd-path-if-exists');
 
 const applyWizardConfigDefaults = (wizardConfig) => ({
   isDev: wizardConfig.isDev || process.env.NODE_ENV === 'development',
@@ -11,17 +11,17 @@ const applyWizardConfigDefaults = (wizardConfig) => ({
 });
 
 const applyInputDefaults = (input) => ({
-  favicon: input.favicon || resolveAbsolutePath('favicon.ico'),
-  html: input.html || resolveAbsolutePath('index.html'),
-  js: input.js || resolveAbsolutePath('src/index.js'),
-  jsDev: input.jsDev || resolveAbsolutePath('src/index-dev.js'),
-  modules: input.modules || [ resolveAbsolutePath('src') ],
-  styles: input.styles || resolveAbsolutePath('src/styles'),
+  favicon: input.favicon || resolveCwdPathIfExists('favicon.ico'),
+  html: input.html || resolveCwdPathIfExists('index.html'),
+  js: input.js || resolveCwdPathIfExists('src/index.js'),
+  jsDev: input.jsDev || resolveCwdPathIfExists('src/index-dev.js'),
+  modules: input.modules || [ resolveCwdPathIfExists('src') ],
+  styles: input.styles || resolveCwdPathIfExists('src/styles'),
   stylesGlobals: input.stylesGlobals
 });
 
 const applyOutputDefaults = (output) => ({
-  directory: output.directory || resolveAbsolutePath('dist'),
+  directory: output.directory || resolveCwdPathIfExists('dist'),
   css: output.css || 'styles.css',
   html: output.html || 'index.html',
   js: output.js || 'bundle.js'
