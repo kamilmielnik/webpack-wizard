@@ -14,7 +14,7 @@ const installDependencies = createDependenciesInstaller('dependencies.json', '--
 const installDevDependencies = createDependenciesInstaller('dev-dependencies.json', '--save-dev');
 
 const createDependenciesInstaller = (filename, npmInstallParam) => (boilerplate) => {
-  const dependenciesPath = `./boilerplates/${boilerplate}/${filename}`;
+  const dependenciesPath = `../../boilerplates/${boilerplate}/${filename}`;
   const dependencies = readDependencies(dependenciesPath);
   if (dependencies.length > 0) {
     execSync(`npm install ${npmInstallParam} ${dependencies.join(' ')}`);

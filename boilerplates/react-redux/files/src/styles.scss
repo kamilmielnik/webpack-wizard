@@ -1,0 +1,19 @@
+@import 'normalize.css';
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0 auto;
+  padding: 0;
+  background: $app-background-color;
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+h1, h2, h3, h4 {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  margin: 0;
+}

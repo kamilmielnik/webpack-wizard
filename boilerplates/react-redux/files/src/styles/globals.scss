@@ -1,0 +1,23 @@
+$primary: #7f2853;
+$app-background-color: #ffffff;
+$font-family: 'Lato', sans-serif;
+$font-size: 13px;
+
+@mixin pointer-effects($color = $primary) {
+  background-color: $color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: mix($color, #ffffff, 90%);
+  }
+
+  &:active {
+    background-color: mix($color, #000000, 90%);
+  }
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

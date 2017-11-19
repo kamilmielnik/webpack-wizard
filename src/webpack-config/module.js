@@ -104,8 +104,11 @@ const createScssRules = (wizardConfig, extractSass) => ({
 });
 
 const createSassLoaderData = (wizardConfig) => {
-  const stylesGlobals = wizardConfig.input.stylesGlobals;
-  return stylesGlobals && `@import '${stylesGlobals}';`;
+  const fileExists = createIncludePaths(wizardConfig.input.styles).some((directory) => {
+    const stylesGlobalsPath = path.resolve(directory, wizardConfig.input.stylesGlobals);
+    return fs.existsSync(stylesGlobalsPath);
+  });
+  return fileExists && `@import '${wizardConfig.input.stylesGlobals}';`;
 };
 
 const createJsRules = (wizardConfig) => ({

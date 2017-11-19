@@ -1,0 +1,4 @@
+.button {
+  @include pointer-effects();
+  padding: 10px 20px;
+}

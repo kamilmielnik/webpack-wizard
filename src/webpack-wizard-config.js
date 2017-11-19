@@ -26,7 +26,7 @@ const applyInputDefaults = (input) => ({
   jsDev: input.jsDev || resolveCwdPath('src/index-dev.js'),
   modules: input.modules || resolveCwdPath('src'),
   styles: input.styles || resolveCwdPathIfExists('src/styles'),
-  stylesGlobals: input.stylesGlobals
+  stylesGlobals: input.stylesGlobals || 'globals.scss'
 });
 
 const applyOutputDefaults = (output) => ({
