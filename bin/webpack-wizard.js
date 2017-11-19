@@ -1,44 +1,53 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk');
-const express = require('express');
-const path = require('path');
-const webpack = require('webpack');
-const webpackWizard = require('../index.js');
-const readConfig = require('./read-config');
+const yargs = require('yargs');
+const webpackWizard = require('../src/index.js');
+const createWebpackWizardConfig = require('../src/webpack-wizard-config');
+const { resolveCwdPathIfExists } = require('../src/utils');
 
-const webpackWizardConfig = readConfig();
-const webpackConfig = webpackWizard(webpackWizardConfig);
-const compiler = webpack(webpackConfig);
+yargs
+  .usage('$0 --config=[string]')
+  .command({
+    command: 'build',
+    desc: 'Build production bundle',
+    handler: createCommandHandler('build')
+  })
+  .command({
+    command: 'start',
+    desc: 'Start development server',
+    handler: createCommandHandler('start')
+  })
+  .command({
+    command: 'boil <boilerplate>',
+    desc: 'Use a predefined boilerplate',
+    handler: createCommandHandler('boil')
+  })
+  .option('config', {
+    demandOption: false,
+    default: 'webpack-wizard.config.js',
+    describe: 'Path to webpack-wizard config',
+    type: 'string'
+  })
+  .help()
+  .argv;
 
-compiler.run((error, stats) => {
-  if (error) {
-    printErrors('Failed to compile.', [ err ]);
-    process.exit(1);
+function createCommandHandler(command) {
+  return (argv) => {
+    const webpackWizardConfig = readConfig(argv.config);
+    const webpackConfig = webpackWizard(webpackWizardConfig);
+    const script = require(`./commands/${command}`);
+    return script(webpackConfig, createWebpackWizardConfig(webpackWizardConfig), argv);
+  };
+}
+
+function readConfig(configPath) {
+  const webpackWizardConfigPath = resolveCwdPathIfExists(configPath);
+
+  if (!webpackWizardConfigPath) {
+    console.log(chalk.yellow(`"${webpackWizardConfigPath}" does not exist, using the default config.`));
+    return undefined;
   }
 
-  if (stats.compilation.errors.length) {
-    printErrors('Failed to compile.', stats.compilation.errors);
-    process.exit(1);
-  }
-
-  if (process.env.CI && stats.compilation.warnings.length) {
-    printErrors(
-      'Failed to compile. When process.env.CI = true, warnings are treated as failures. Most CI servers set this automatically.',
-      stats.compilation.warnings
-    );
-    process.exit(1);
-  }
-
-  console.log(chalk.green('Compiled successfully.'));
-  console.log();
-});
-
-function printErrors(summary, errors) {
-  console.log(chalk.red(summary));
-  console.log();
-  errors.forEach((error) => {
-    console.log(error.message || error);
-    console.log();
-  });
+  return require(webpackWizardConfigPath);
 }

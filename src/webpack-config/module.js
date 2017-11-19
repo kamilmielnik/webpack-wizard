@@ -70,47 +70,47 @@ const createCssRules = (wizardConfig, extractSass) => ({
   })
 });
 
-const createScssRules = (wizardConfig, extractSass) => {
-  const stylesGlobals = wizardConfig.input.stylesGlobals;
-  return {
-    test: /\.scss$/,
-    use: extractSass({
-      fallback: 'style-loader',
-      use: [
-        {
-          loader: 'css-loader',
-          options: {
-            camelCase: true,
-            localIdentName: '[local]-[hash:base64:5]',
-            minimize: wizardConfig.isProd,
-            modules: true
-          }
-        },
-        {
-          loader: 'postcss-loader',
-          options: postcssOptions
-        },
-        {
-          loader: 'resolve-url-loader'
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            data: stylesGlobals && `@import '${stylesGlobals}';`,
-            includePaths: [
-              wizardConfig.input.styles
-            ],
-            sourceMap: false
-          }
+const createScssRules = (wizardConfig, extractSass) => ({
+  test: /\.scss$/,
+  use: extractSass({
+    fallback: 'style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          camelCase: true,
+          localIdentName: '[local]-[hash:base64:5]',
+          minimize: wizardConfig.isProd,
+          modules: true
         }
-      ]
-    })
-  };
+      },
+      {
+        loader: 'postcss-loader',
+        options: postcssOptions
+      },
+      {
+        loader: 'resolve-url-loader'
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          data: createSassLoaderData(wizardConfig),
+          includePaths: createIncludePaths(wizardConfig.input.styles),
+          sourceMap: false
+        }
+      }
+    ]
+  })
+});
+
+const createSassLoaderData = (wizardConfig) => {
+  const stylesGlobals = wizardConfig.input.stylesGlobals;
+  return stylesGlobals && `@import '${stylesGlobals}';`;
 };
 
 const createJsRules = (wizardConfig) => ({
   test: /\.js$/,
-  include: wizardConfig.input.modules,
+  include: createIncludePaths(wizardConfig.input.modules),
   use: {
     loader: 'babel-loader',
     options: {
@@ -126,3 +126,13 @@ const createJsRules = (wizardConfig) => ({
     }
   }
 });
+
+const createIncludePaths = (path) => {
+  if (Array.isArray(path)) {
+    return path;
+  }
+  if (typeof path === 'string') {
+    return [ path ];
+  }
+  return undefined;
+};
