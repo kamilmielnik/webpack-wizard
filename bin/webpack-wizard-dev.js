@@ -14,9 +14,8 @@ const webpackConfig = webpackWizard(webpackWizardConfig);
 const compiler = webpack(webpackConfig);
 
 const app = express();
-const host = webpackWizardConfig.devHost || 'localhost';
-const port = webpackWizardConfig.devPort || 3000;
-const htmlPath = webpackWizardConfig.input.html || path.resolve(process.cwd(), 'index.html');
+const host = webpackWizardConfig.devHost;
+const port = webpackWizardConfig.devPort;
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
@@ -30,7 +29,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (request, response) => {
-  response.sendFile(htmlPath);
+  response.sendFile(webpackWizardConfig.input.html);
 });
 
 app.listen(port, host, (error) => {
