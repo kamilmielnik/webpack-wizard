@@ -9,11 +9,13 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
   const port = webpackWizardConfig.devPort;
   const compiler = webpack(webpackConfig);
   const app = express();
+  let isFirstBuildComplete = false;
+  let isServerUp = false;
 
-  console.log('webpack building...');
+  console.log('Starting compilation...');
   app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
     publicPath: webpackConfig.output.publicPath,
+    stats: 'minimal',
     watchOptions: {
       aggregateTimeout: 300,
       poll: true
@@ -21,6 +23,14 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
   }));
 
   app.use(webpackHotMiddleware(compiler));
+
+  compiler.plugin('done', () => {
+    if (!isFirstBuildComplete && isServerUp) {
+      logStartMessage();
+    }
+
+    isFirstBuildComplete = true;
+  });
 
   app.get('*', (request, response) => {
     response.sendFile(webpackWizardConfig.input.html);
@@ -31,6 +41,14 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
       return console.log(chalk.red(error));
     }
 
-    console.log(chalk.green(`web server is listening at http://${host}:${port}`));
+    if (isFirstBuildComplete) {
+      logStartMessage();
+    }
+
+    isServerUp = true;
   });
+
+  function logStartMessage() {
+    console.log(chalk.green(`Web server is listening at http://${host}:${port}`));
+  }
 };

@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = (argv, webpackConfig) => {
   const compiler = webpack(webpackConfig);
-  console.log(chalk.yellow('Starting compilation...'));
+  console.log('Starting compilation...');
   compiler.run((error, stats) => {
     if (error) {
       printErrors('Failed to compile.', [ err ]);
@@ -23,8 +23,13 @@ module.exports = (argv, webpackConfig) => {
       process.exit(1);
     }
 
-    console.log(chalk.green('Compiled successfully.'));
-    console.log();
+    console.log(stats.toString({
+      modules: false,
+      chunks: false,
+      colors: true
+    }));
+    console.log('\x1b[0m');
+    console.log('Compiled successfully.');
   });
 };
 

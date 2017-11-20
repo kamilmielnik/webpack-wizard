@@ -103,6 +103,10 @@ Run `webpack-wizard build` in root directory of your project to start production
 `webpack.wizard.config.js` should be a JavaScript module that exports an `Object` with attributes described below.
 
 All paths you provide should be absolute, except for `stylesGlobals` option.
+This function may come handy for constructing absolute paths in your `webpack-wizard.config.js`:
+```javascript
+const getAbsolutePath = (relativePath) => path.resolve(__dirname, relativePath);
+```
 
 All default paths will be relative to your project root directory (assuming this will be your current working directory when running `webpack-wizard build` or `webpack-wizard start`).
 

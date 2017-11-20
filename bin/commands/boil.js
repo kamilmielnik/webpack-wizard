@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 
 module.exports = (argv) => {
   const { boilerplate, name } = argv;
-  console.log(chalk.yellow(`Boiling "${boilerplate}"...`));
+  console.log(`Boiling "${boilerplate}"...`);
   createDirectoryIfNotExists(name);
   process.chdir(name);
   createPackageJson(boilerplate, name);
@@ -17,14 +17,14 @@ module.exports = (argv) => {
 
 const createDirectoryIfNotExists = (filepath) => {
   if (!fs.existsSync(filepath)) {
-    console.log(chalk.yellow(`Creating "${filepath}" directory...`));
+    console.log(`Creating "${filepath}" directory...`);
     fs.mkdirSync(filepath);
     console.log(chalk.green(`"${filepath}" directory created.`));
   }
 };
 
 const createPackageJson = (boilerplate, name) => {
-  console.log(chalk.yellow('Creating "package.json"...'));
+  console.log('Creating "package.json"...');
   const json = getPackageJson(name);
   const stringifiedJson = JSON.stringify(json, null, 2);
   fs.writeFileSync('./package.json', stringifiedJson);
@@ -62,13 +62,13 @@ const getPackageJson = (boilerplate, name) => ({
 });
 
 const installWebpackWizard = () => {
-  console.log(chalk.yellow('Installing webpack-wizard...'));
+  console.log('Installing webpack-wizard...');
   execSync(`npm install --save-dev webpack-wizard`);
   console.log(chalk.green('webpack-wizard installed.'));
 };
 
 const installDependencies = (boilerplate, dependenciesType, npmInstallParam) => {
-  console.log(chalk.yellow(`Installing ${dependenciesType}...`));
+  console.log(`Installing ${dependenciesType}...`);
   const dependencies = readDependencies(boilerplate, `${dependenciesType}.json`);
   const dependenciesList = Object.keys(dependencies).reduce(
     (list, dependency) => list.concat([
@@ -89,7 +89,7 @@ const readDependencies = (boilerplate, filename) => {
 
 const copyBoilerplateFiles = (boilerplate) => {
   try {
-    console.log(chalk.yellow(`Copying "${boilerplate}" files...`));
+    console.log(`Copying "${boilerplate}" files...`);
     fs.copySync(`${getBoilerplatePath(boilerplate)}/files`, '.');
     console.log(chalk.green(`"${boilerplate}" files copied.`));
   } catch(error) {
