@@ -2,22 +2,29 @@ const { WEBPACK_CONFIG } = require('./constants');
 const { resolveCwdPath, resolveCwdPathIfExists } = require('./utils');
 
 module.exports = (config) => {
-  const configIsWebpackConfig = Boolean(config && config[WEBPACK_CONFIG]);
-  if (configIsWebpackConfig) {
+  if (config && config[WEBPACK_CONFIG]) {
     return config;
   }
   return createWebpackWizardConfig(config);
 };
 
-const createWebpackWizardConfig = (wizardConfig) => ({
+const createWebpackWizardConfig = (wizardConfig = {}) => ({
   isDev: wizardConfig.isDev || process.env.NODE_ENV === 'development',
   isProd: wizardConfig.isProd || process.env.NODE_ENV === 'production',
   devHost: wizardConfig.devHost || 'localhost',
   devPort: wizardConfig.devPort || 3000,
-  env: wizardConfig.env || {},
+  env: cloneEnvVariables(wizardConfig.env || process.env || {}),
   input: applyInputDefaults(wizardConfig.input || {}),
   output: applyOutputDefaults(wizardConfig.output || {})
 });
+
+const cloneEnvVariables = (source) => Object.keys(source).reduce(
+  (env, key) => ({
+    ...env,
+    [key]: source[key]
+  }),
+  {}
+);
 
 const applyInputDefaults = (input) => ({
   favicon: input.favicon || resolveCwdPathIfExists('favicon.ico'),
