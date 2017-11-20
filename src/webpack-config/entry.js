@@ -8,5 +8,8 @@ module.exports = (wizardConfig) => {
     ];
   }
 
-  return wizardConfig.input.js;
+  return [
+    'babel-polyfill',
+    wizardConfig.input.js
+  ];
 };
