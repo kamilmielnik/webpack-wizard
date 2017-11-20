@@ -11,16 +11,16 @@ yargs
   .command({
     command: 'build',
     desc: 'Build production bundle',
-    handler: createCommandHandler('build')
+    handler: createCommandHandler('build', { needsConfig: true })
   })
   .command({
     command: 'start',
     desc: 'Start development server',
-    handler: createCommandHandler('start')
+    handler: createCommandHandler('start', { needsConfig: true })
   })
   .command({
-    command: 'boil <boilerplate>',
-    desc: 'Use a predefined boilerplate',
+    command: 'boil <boilerplate> <name>',
+    desc: 'Create a <name> project with a predefined boilerplate',
     handler: createCommandHandler('boil')
   })
   .option('config', {
@@ -32,12 +32,15 @@ yargs
   .help()
   .argv;
 
-function createCommandHandler(command) {
+function createCommandHandler(command, { needsConfig = false } = {}) {
   return (argv) => {
-    const webpackWizardConfig = readConfig(argv.config);
-    const webpackConfig = webpackWizard(webpackWizardConfig);
     const script = require(`./commands/${command}`);
-    return script(webpackConfig, createWebpackWizardConfig(webpackWizardConfig), argv);
+    if (needsConfig) {
+      const webpackWizardConfig = readConfig(argv.config);
+      const webpackConfig = webpackWizard(webpackWizardConfig);
+      return script(argv, webpackConfig, createWebpackWizardConfig(webpackWizardConfig));
+    }
+    return script(argv);
   };
 }
 

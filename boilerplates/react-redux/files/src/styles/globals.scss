@@ -3,16 +3,18 @@ $app-background-color: #ffffff;
 $font-family: 'Lato', sans-serif;
 $font-size: 13px;
 
-@mixin pointer-effects($color = $primary) {
-  background-color: $color;
+@mixin pointer-effects($background-color: $primary, $foreground-color: white) {
+  background-color: $background-color;
+  color: $foreground-color;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
-    background-color: mix($color, #ffffff, 90%);
+    background-color: mix($background-color, #ffffff, 90%);
   }
 
   &:active {
-    background-color: mix($color, #000000, 90%);
+    background-color: mix($background-color, #000000, 90%);
   }
 }
 

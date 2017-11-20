@@ -1,9 +1,9 @@
 const chalk = require('chalk');
 const webpack = require('webpack');
 
-module.exports = (webpackConfig) => {
+module.exports = (argv, webpackConfig) => {
   const compiler = webpack(webpackConfig);
-  console.log(chalk.yellow('Starting compilation.'));
+  console.log(chalk.yellow('Starting compilation...'));
   compiler.run((error, stats) => {
     if (error) {
       printErrors('Failed to compile.', [ err ]);

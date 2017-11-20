@@ -5,6 +5,7 @@
 }
 
 html, body {
+  height: 100%;
   margin: 0 auto;
   padding: 0;
   background: $app-background-color;
@@ -16,4 +17,10 @@ h1, h2, h3, h4 {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   margin: 0;
+}
+
+:global {
+  #app {
+    height: 100%;
+  }
 }

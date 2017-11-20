@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-module.exports = (webpackConfig, webpackWizardConfig) => {
+module.exports = (argv, webpackConfig, webpackWizardConfig) => {
   const host = webpackWizardConfig.devHost;
   const port = webpackWizardConfig.devPort;
   const compiler = webpack(webpackConfig);

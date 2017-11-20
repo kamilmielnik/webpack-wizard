@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const postcssOptions = {
@@ -130,12 +132,12 @@ const createJsRules = (wizardConfig) => ({
   }
 });
 
-const createIncludePaths = (path) => {
-  if (Array.isArray(path)) {
-    return path;
+const createIncludePaths = (filepath) => {
+  if (Array.isArray(filepath)) {
+    return filepath;
   }
-  if (typeof path === 'string') {
-    return [ path ];
+  if (typeof filepath === 'string') {
+    return [ filepath ];
   }
   return undefined;
 };

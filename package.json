@@ -16,7 +16,13 @@
     "url": "https://github.com/kamilmielnik/webpack-wizard/issues"
   },
   "homepage": "https://github.com/kamilmielnik/webpack-wizard#readme",
-  "keywords": [ "webpack", "wizard", "config", "node", "node.js" ],
+  "keywords": [
+    "webpack",
+    "wizard",
+    "config",
+    "node",
+    "node.js"
+  ],
   "engines": {
     "node": ">=6"
   },
@@ -27,6 +33,7 @@
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
@@ -36,6 +43,7 @@
     "express": "4.16.2",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
+    "fs-extra": "^4.0.2",
     "html-webpack-plugin": "2.30.1",
     "image-webpack-loader": "3.4.2",
     "node-sass": "4.7.1",
