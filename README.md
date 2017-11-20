@@ -112,7 +112,7 @@ All default paths will be relative to your project root directory (assuming this
 | `isProd`  | `Boolean`            | `process.env.NODE_ENV === 'production'`  | production build flag                                                                                            |
 | `devHost` | `String`             | `'localhost'`                            | development server host                                                                                          |
 | `devPort` | `Number`             | `3000`                                   | development server port                                                                                          |
-| `env`     | `Object`             | `{}`                                     | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
+| `env`     | `Object`             | `process.env || {}`                      | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
 | `input`   | `Object` (see below) | `{}`                                     | object that holds absolute paths for your sources                                                                |
 | `output`  | `Object` (see below) | `{}`                                     | object that holds absolute paths for what will be produced by webpack                                            |
 
