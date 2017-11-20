@@ -54,7 +54,7 @@ Webpack Wizard comes with defaults. You do not need a config. But you can create
 
 #### Project structure for the default config
 ```
-- dist/ /* generated when running `webpack-wizard` */
+- dist/ /* generated when running `webpack-wizard build` */
   - bundle.js
   - index.html
   - styles.css
@@ -69,7 +69,7 @@ Webpack Wizard comes with defaults. You do not need a config. But you can create
 ```
 
 ### Add npm scripts
-It's recommended to use `webpack-wizard` & `webpack-wizard-dev` scripts in `package.json` with [better-npm-run](https://github.com/benoror/better-npm-run) (`npm install better-npm-run --save-dev`), so that you can easily (and cross-platform) provide appropriate `NODE_ENV` env variable.
+It's recommended to use `webpack-wizard build` & `webpack-wizard start` scripts in `package.json` with [better-npm-run](https://github.com/benoror/better-npm-run) (`npm install better-npm-run --save-dev`), so that you can easily (and cross-platform) provide appropriate `NODE_ENV` env variable.
 ```javascript
 ...
 "scripts": {
@@ -78,13 +78,13 @@ It's recommended to use `webpack-wizard` & `webpack-wizard-dev` scripts in `pack
 },
 "betterScripts": {
   "build": {
-    "command": "webpack-wizard",
+    "command": "webpack-wizard build",
     "env": {
       "NODE_ENV": "production"
     }
   },
   "start": {
-    "command": "webpack-wizard-dev",
+    "command": "webpack-wizard start",
     "env": {
       "NODE_ENV": "development"
     }
@@ -94,17 +94,17 @@ It's recommended to use `webpack-wizard` & `webpack-wizard-dev` scripts in `pack
 ```
 
 ### Development server
-Run `webpack-wizard-dev` in root directory of your project to start a development server.
+Run `webpack-wizard start` in root directory of your project to start a development server.
 
 ### Production build
-Run `webpack-wizard` in root directory of your project to start production build.
+Run `webpack-wizard build` in root directory of your project to start production build.
 
 ## Config
 `webpack.wizard.config.js` should be a JavaScript module that exports an `Object` with attributes described below.
 
 All paths you provide should be absolute, except for `stylesGlobals` option.
 
-All default paths will be relative to your project root directory (assuming this will be your current working directory when running `webpack-wizard` or `webpack-wizard-dev`).
+All default paths will be relative to your project root directory (assuming this will be your current working directory when running `webpack-wizard build` or `webpack-wizard start`).
 
 | Name      | Type                 | Default value                            | Description                                                                                                      |
 |-----------|----------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -202,4 +202,18 @@ const webpackConfig = webpackWizard(webpackWizardConfig);
 /* do stuff to webpackConfig */
 
 module.exports = webpackConfig;
+```
+
+## Boilerplates
+Webpack Wizard has one experimental built-in boilerplate: `react-redux`. You can use it in the following way:
+```
+npm install -g webpack-wizard               # installs webpack-wizard command globally (you only need to do this once)
+cd /my-projects                             # go to a directory, which you want to become a parent directory for your new project
+webpack-wizard boil react-redux my-project  # run webpack-wizard boilerplate generator (WARNING: this will take a while, be patient)
+                                            #   - specify `react-redux` boilerplate
+                                            #   - specify name for your project (here: `my-project`)
+cd my-project                               # open freshly created directory
+npm start                                   # you're good to go, you can run your development server
+npm run build                               # or production build
+npm run start:prod                          # and then serve it with simple http server
 ```
