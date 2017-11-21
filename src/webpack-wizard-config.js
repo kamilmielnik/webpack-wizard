@@ -19,10 +19,10 @@ const createWebpackWizardConfig = (wizardConfig = {}) => ({
 });
 
 const cloneEnvVariables = (source) => Object.keys(source).reduce(
-  (env, key) => ({
-    ...env,
-    [key]: JSON.stringify(source[key])
-  }),
+  (env, key) => {
+    env[key] = JSON.stringify(source[key]);
+    return env;
+  },
   {}
 );
 
