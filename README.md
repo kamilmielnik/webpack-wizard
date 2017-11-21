@@ -150,7 +150,7 @@ All paths you provide should be absolute, except for `stylesGlobals` option. All
 | `jsDev`         | `String`            | `'src/index-dev.js'` | absolute path to your entry development JS file                                                                                                |
 | `modules`       | `String` or `Array` | `[ 'src' ]`          | absolute path(s) that will go to `resolve.modules` in webpack config                                                                           |
 | `styles`        | `String` or `Array` | `[ 'src/styles' ]`   | absolute path(s) to directory(ies) with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
-| `stylesGlobals` | `String`            | `undefined`          | name of file in `styles` directory(ies), that will be imported in every SCSS file in your project                                                   |
+| `stylesGlobals` | `String`            | `globals.scss`       | name of file in `styles` directory(ies), that will be imported in every SCSS file in your project                                                   |
 
 #### output
 `output` should be an `Object` with the following attributes:
