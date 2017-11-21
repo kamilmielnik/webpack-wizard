@@ -1,4 +1,20 @@
 # Webpack Wizard
+## Table of Contents
+1. [Description](#description)
+2. [What's inside](#whats-inside)
+3. [Usage](#usage)
+    1. [Install](#install)
+    2. [Configure or... not](#configure-or-not)
+    3. [Project structure for the default config](#project-structure-for-the-default-config)
+    4. [Add npm scripts](#add-npm-scripts)
+    5. [Development server](#development-server)
+    6. [Production build](#production-build)
+4. [Config](#config)
+    1. [Complete example](#complete-example)
+    2. [Customization](#customization)
+    3. [Real-world examples](#real-world-examples)
+5. [Boilerplates](#boilerplates)
+
 ## Description
 Webpack Wizard is an opinionated build process tool, that is meant to:
 - be a facade for your build process dependencies
@@ -14,7 +30,7 @@ All you have to do after installing is one of the following:
 - set `NODE_ENV` env variable to `production` or `development`
 - create `webpack-wizard.config.js` file with `isDev` && `isProd` options (see "Config" section below)
 
-It can also be used as an alternative to a boilerplate, but without polluting your codebase. Bring your own libraries.
+Bring your own libraries or check out the [boilerplates](#boilerplates).
 
 ## What's inside
 - webpack
@@ -49,12 +65,12 @@ It can also be used as an alternative to a boilerplate, but without polluting yo
 ### Install
 `npm install webpack-wizard --save-dev`
 
-### Configure it or... not
-Webpack Wizard comes with defaults. You do not need a config. But you can create `webpack-wizard.config.js` in root directory of your project. This file will be transformed into webpack config on the fly. This file needs to export an `Object` with properties described in a "Config" section below.
+### Configure or... not
+Webpack Wizard comes with defaults. You do not need a config. But you can create `webpack-wizard.config.js` in root directory of your project. This file will be transformed into webpack config on the fly. You can see the documentation for the config below.
 
-#### Project structure for the default config
+### Project structure for the default config
 ```
-- dist/ /* generated when running `webpack-wizard build` */
+- dist/ # generated when running `webpack-wizard build`
   - bundle.js
   - index.html
   - styles.css
@@ -100,40 +116,43 @@ Run `webpack-wizard start` in root directory of your project to start a developm
 Run `webpack-wizard build` in root directory of your project to start production build.
 
 ## Config
-`webpack.wizard.config.js` should be a JavaScript module that exports an `Object` with attributes described below.
+`webpack.wizard.config.js` should be a JavaScript module that exports either:
+- a Webpack Wizard config `Object`
+- or a function that returns either
+    - a Webpack Wizard config `Object`
+    - or a webpack config `Object`
 
-All paths you provide should be absolute, except for `stylesGlobals` option.
-This function may come handy for constructing absolute paths in your `webpack-wizard.config.js`:
-```javascript
-const getAbsolutePath = (relativePath) => path.resolve(__dirname, relativePath);
-```
+If you'll go with function, then it will be invoked with 2 arguments:
+1. `webpackWizard` - function that accepts a Webpack Wizard config object and returns a webpack config object
+2. `utils` - see [src/utils.js](https://github.com/kamilmielnik/webpack-wizard/blob/master/src/utils.js) to see what utils are available (`resolveCwdPath` will be most useful)
 
-All default paths will be relative to your project root directory (assuming this will be your current working directory when running `webpack-wizard build` or `webpack-wizard start`).
+All paths you provide should be absolute, except for `stylesGlobals` option. All default paths are relative to your current working directory.
 
+### Webpack Wizard config object
 | Name      | Type                 | Default value                            | Description                                                                                                      |
 |-----------|----------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | `isDev`   | `Boolean`            | `process.env.NODE_ENV === 'development'` | development build flag                                                                                           |
 | `isProd`  | `Boolean`            | `process.env.NODE_ENV === 'production'`  | production build flag                                                                                            |
 | `devHost` | `String`             | `'localhost'`                            | development server host                                                                                          |
 | `devPort` | `Number`             | `3000`                                   | development server port                                                                                          |
-| `env`     | `Object`             | `process.env || {}`                      | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
+| `env`     | `Object`             | `process.env \|\| {}`                    | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
 | `input`   | `Object` (see below) | `{}`                                     | object that holds absolute paths for your sources                                                                |
 | `output`  | `Object` (see below) | `{}`                                     | object that holds absolute paths for what will be produced by webpack                                            |
 
-### input
+#### input
 `input` should be an `Object` with the following attributes:
 
 | Name            | Type     | Default value        | Description                                                                                                                            |
 |-----------------|----------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| `favicon`       | `String` | `'favicon.ico'`      | absolute path to your favicon                                                                                                          |
-| `html`          | `String` | `'index.html'`       | absolute path to your main HTML file                                                                                                   |
-| `js`            | `String` | `'src/index.js'`     | absolute path to your entry production JS file                                                                                         |
-| `jsDev`         | `String` | `'src/index-dev.js'` | absolute path to your entry development JS file                                                                                        |
-| `modules`       | `Array`  | `[ 'src' ]`          | array of absolute paths that will go to `resolve.modules` in webpack config                                                            |
-| `styles`        | `String` | `'src/styles'`       | absolute path to directory with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
-| `stylesGlobals` | `String` | `undefined`          | name of file in `styles` directory, that will be imported in every SCSS file in your project                                           |
+| `favicon`       | `String`            | `'favicon.ico'`      | absolute path to your favicon                                                                                                                  |
+| `html`          | `String`            | `'index.html'`       | absolute path to your main HTML file                                                                                                           |
+| `js`            | `String`            | `'src/index.js'`     | absolute path to your entry production JS file                                                                                                 |
+| `jsDev`         | `String`            | `'src/index-dev.js'` | absolute path to your entry development JS file                                                                                                |
+| `modules`       | `String` or `Array` | `[ 'src' ]`          | absolute path(s) that will go to `resolve.modules` in webpack config                                                                           |
+| `styles`        | `String` or `Array` | `[ 'src/styles' ]`   | absolute path(s) to directory(ies) with SCSS files, that are not referenced anywhere, but you still want included (use this to handle globals) |
+| `stylesGlobals` | `String`            | `undefined`          | name of file in `styles` directory(ies), that will be imported in every SCSS file in your project                                                   |
 
-### output
+#### output
 `output` should be an `Object` with the following attributes:
 
 | Name        | Type                 | Default value  | Description                                                                                                      |
@@ -144,10 +163,9 @@ All default paths will be relative to your project root directory (assuming this
 | `js`        | `String`             | `'bundle.js'`  | name of JS file which will be placed in `directory`                                                              |
 
 ### Complete example
+Please note that there are redundancies here.
 ```javascript
-const path = require('path');
-
-module.exports = {
+module.exports = (webpackConfig, { resolveCwdPath }) => ({
   isDev: process.env.NODE_ENV === 'development',
   isProd: process.env.NODE_ENV === 'production',
   devHost: 'localhost',
@@ -158,24 +176,48 @@ module.exports = {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
   },
   input: {
-    favicon: path.resolve(__dirname, 'html', 'favicon.ico'),
-    html: path.resolve(__dirname, 'html', 'index.html'),
-    js: path.resolve(__dirname, 'src', 'index.js'),
-    jsDev: path.resolve(__dirname, 'src', 'index-dev.js'),
+    favicon: resolveCwdPath('html/favicon.ico'),
+    html: resolveCwdPath('html/index.html'),
+    js: resolveCwdPath('src/index.js'),
+    jsDev: resolveCwdPath('src/index-dev.js'),
     modules: [
-      path.resolve(__dirname, 'src')
+      resolveCwdPath('src')
     ],
-    styles: path.resolve(__dirname, 'src', 'styles'),
+    styles: [
+      resolveCwdPath('src/styles')
+    ],
     stylesGlobals: 'globals.scss',
   },
   output: {
-    directory: path.resolve(__dirname, 'dist'),
+    directory: resolveCwdPath('dist'),
     css: 'styles.css',
     html: 'index.html',
     js: 'bundle.js'
   }
-};
+});
 
+```
+
+### Customization
+If you need to access/modify webpack config generated from your `webpack-wizard.config.js` you can modify `webpack-wizard.config.js` in the following way:
+```javascript
+module.exports = (webpackWizard) => {
+  const webpackWizardConfig = { /* ... */ };
+  const webpackConfig = webpackWizard(webpackWizardConfig);
+  /* now do stuff to webpackConfig */
+  /* for example */ webpackConfig.target = 'electron-main';
+  return webpackConfig;
+};
+```
+
+or this way, if you prefer an explicit `webpack-wizard` dependency:
+```javascript
+const webpackWizard = require('webpack-wizard');
+const webpackWizardConfig = { /* ... */ };
+const webpackConfig = webpackWizard(webpackWizardConfig);
+/* now do stuff to webpackConfig */
+/* for example */ webpackConfig.target = 'electron-main';
+module.exports = webpackConfig;
 ```
 
 ### Real-world examples
@@ -191,22 +233,6 @@ module.exports = {
     - [www](http://sprouts.kamilmielnik.com/)
     - [github](https://github.com/kamilmielnik/sprouts/)
     - [webpack-wizard.config.js](https://github.com/kamilmielnik/sprouts/blob/master/webpack-wizard.config.js)
-
-### Customization
-If you need to access/modify webpack config generated from your `webpack-wizard.config.js` you can modify `webpack-wizard.config.js` in the following way:
-```javascript
-const webpackWizard = require('webpack-wizard');
-
-const webpackWizardConfig = {
-  /* ... */
-};
-
-const webpackConfig = webpackWizard(webpackWizardConfig);
-
-/* do stuff to webpackConfig */
-
-module.exports = webpackConfig;
-```
 
 ## Boilerplates
 Webpack Wizard has one experimental built-in boilerplate: `react-redux`. You can use it in the following way:
