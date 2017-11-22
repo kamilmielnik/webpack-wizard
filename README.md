@@ -165,7 +165,7 @@ All paths you provide should be absolute, except for `stylesGlobals` option. All
 ### Complete example
 Please note that there are redundancies here.
 ```javascript
-module.exports = (webpackConfig, { resolveCwdPath }) => ({
+module.exports = (webpackWizard, { resolveCwdPath }) => ({
   isDev: process.env.NODE_ENV === 'development',
   isProd: process.env.NODE_ENV === 'production',
   devHost: 'localhost',
