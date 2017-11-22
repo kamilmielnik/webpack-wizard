@@ -117,12 +117,12 @@ Run `webpack-wizard build` in root directory of your project to start production
 
 ## Config
 `webpack.wizard.config.js` should be a JavaScript module that exports either:
-- a Webpack Wizard config `Object`
+- a Webpack Wizard config object
 - or a function that returns either
-    - a Webpack Wizard config `Object`
-    - or a webpack config `Object`
+    - a Webpack Wizard config object
+    - or a webpack config
 
-If you'll go with function, then it will be invoked with 2 arguments:
+If you'll go with the function, it will be invoked with 2 arguments:
 1. `webpackWizard` - function that accepts a Webpack Wizard config object and returns a webpack config object
 2. `utils` - see [src/utils.js](https://github.com/kamilmielnik/webpack-wizard/blob/master/src/utils.js) to see what utils are available (`resolveCwdPath` will be most useful)
 
@@ -163,7 +163,6 @@ All paths you provide should be absolute, except for `stylesGlobals` option. All
 | `js`        | `String`             | `'bundle.js'`  | name of JS file which will be placed in `directory`                                                              |
 
 ### Complete example
-Please note that there are redundancies here.
 ```javascript
 module.exports = (webpackWizard, { resolveCwdPath }) => ({
   isDev: process.env.NODE_ENV === 'development',
@@ -186,7 +185,7 @@ module.exports = (webpackWizard, { resolveCwdPath }) => ({
     styles: [
       resolveCwdPath('src/styles')
     ],
-    stylesGlobals: 'globals.scss',
+    stylesGlobals: 'globals.scss'
   },
   output: {
     directory: resolveCwdPath('dist'),
@@ -195,7 +194,16 @@ module.exports = (webpackWizard, { resolveCwdPath }) => ({
     js: 'bundle.js'
   }
 });
-
+```
+Which (because of the defaults) would have much shorter equivalent:
+```javascript
+module.exports = (webpackWizard, { resolveCwdPath }) => ({
+  devPort: 8080,
+  input: {
+    favicon: resolveCwdPath('html/favicon.ico'),
+    html: resolveCwdPath('html/index.html')
+  }
+});
 ```
 
 ### Customization
