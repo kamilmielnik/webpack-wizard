@@ -1,6 +1,6 @@
 {
   "name": "webpack-wizard",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Forget about maintaining webpack build process",
   "author": {
     "name": "Kamil Mielnik",
@@ -16,7 +16,13 @@
     "url": "https://github.com/kamilmielnik/webpack-wizard/issues"
   },
   "homepage": "https://github.com/kamilmielnik/webpack-wizard#readme",
-  "keywords": [ "webpack", "wizard", "config", "node", "node.js" ],
+  "keywords": [
+    "webpack",
+    "wizard",
+    "config",
+    "node",
+    "node.js"
+  ],
   "engines": {
     "node": ">=6"
   },
@@ -41,6 +47,7 @@
     "fs-extra": "^4.0.2",
     "html-webpack-plugin": "2.30.1",
     "image-webpack-loader": "3.4.2",
+    "inquirer": "^4.0.0",
     "node-sass": "4.7.2",
     "postcss-loader": "2.0.8",
     "react-hot-loader": "3.1.3",
