@@ -1,6 +1,6 @@
 {
   "name": "webpack-wizard",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Forget about maintaining webpack build process",
   "author": {
     "name": "Kamil Mielnik",
