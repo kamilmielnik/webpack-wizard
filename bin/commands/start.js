@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const history = require('connect-history-api-fallback');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -11,6 +12,8 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
   const app = express();
   let isFirstBuildComplete = false;
   let isServerUp = false;
+
+  app.use(history());
 
   console.log('Starting compilation...');
   app.use(webpackDevMiddleware(compiler, {

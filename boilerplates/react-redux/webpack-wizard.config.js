@@ -1,12 +1,10 @@
-const path = require('path');
-
-module.exports = {
+module.exports = (webpackConfig, { resolveCwdPath }) => ({
   input: {
-    favicon: path.resolve(__dirname, 'html', 'favicon.ico'),
-    html: path.resolve(__dirname, 'html', 'index.html'),
+    favicon: resolveCwdPath('html/favicon.ico'),
+    html: resolveCwdPath('html/index.html'),
     modules: [
-      path.resolve(__dirname, 'src'),
-      path.resolve(__dirname, 'src', 'modules')
+      resolveCwdPath('src'),
+      resolveCwdPath('src/modules')
     ]
   }
-};
+});
