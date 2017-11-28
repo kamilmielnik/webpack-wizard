@@ -116,7 +116,7 @@ const createScssRules = (wizardConfig, extractSass) => ({
 });
 
 const createSassLoaderData = (wizardConfig) => {
-  const fileExists = createIncludePaths(wizardConfig.input.styles).some((directory) => {
+  const fileExists = (createIncludePaths(wizardConfig.input.styles) || []).some((directory) => {
     const stylesGlobalsPath = path.resolve(directory, wizardConfig.input.stylesGlobals);
     return fs.existsSync(stylesGlobalsPath);
   });
