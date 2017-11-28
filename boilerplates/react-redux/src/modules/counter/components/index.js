@@ -35,6 +35,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onDecreaseClick: () => dispatch(decrement()),
   onIncreaseClick: () => dispatch(increment())
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

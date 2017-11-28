@@ -21,6 +21,7 @@ module.exports = (wizardConfig) => {
   return {
     rules: [
       createImageRules(),
+      createFontRules(),
       createCssRules(wizardConfig, extractSass),
       createScssRules(wizardConfig, extractSass),
       createJsRules(wizardConfig)
@@ -49,6 +50,15 @@ const createImageRules = () => ({
     },
     {
       loader: 'image-webpack-loader'
+    }
+  ]
+});
+
+const createFontRules = () => ({
+  test: /\.(woff|woff2|eot|ttf|otf)$/i,
+  use: [
+    {
+      loader: 'file-loader'
     }
   ]
 });
