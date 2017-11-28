@@ -4,7 +4,6 @@ const chalk = require('chalk');
 const yargs = require('yargs');
 const webpackWizard = require('../src/index.js');
 const { WEBPACK_WIZARD_CONFIG } = require('../src/constants');
-const createWebpackWizardConfig = require('../src/webpack-wizard-config');
 const utils = require('../src/utils');
 
 yargs

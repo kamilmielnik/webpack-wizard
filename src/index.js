@@ -3,7 +3,7 @@ const createWebpackConfig = require('./webpack-config');
 const createWebpackWizardConfig = require('./webpack-wizard-config');
 
 const webpackWizard = (config) => {
-  if (config[WEBPACK_WIZARD_CONFIG]) {
+  if (config && config[WEBPACK_WIZARD_CONFIG]) {
     return config;
   }
   const wizardConfig = createWebpackWizardConfig(config);
