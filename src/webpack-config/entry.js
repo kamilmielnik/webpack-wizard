@@ -1,7 +1,7 @@
 module.exports = (wizardConfig) => {
   if (wizardConfig.isDev) {
     return [
-      'babel-polyfill',
+      '@babel/polyfill',
       'webpack-hot-middleware/client',
       'react-hot-loader/patch',
       wizardConfig.input.jsDev
@@ -9,7 +9,7 @@ module.exports = (wizardConfig) => {
   }
 
   return [
-    'babel-polyfill',
+    '@babel/polyfill',
     wizardConfig.input.js
   ];
 };
