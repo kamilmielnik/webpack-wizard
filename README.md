@@ -33,10 +33,9 @@ All you have to do after installing is one of the following:
 Bring your own libraries or check out the [boilerplates](#boilerplates).
 
 ## What's inside
-- webpack
-- babel
+- webpack 3
+- babel 7
   - babel-core
-  - babel-plugin-transform-decorators-legacy
   - babel-preset-es2015
   - babel-preset-react
   - babel-preset-stage-0
