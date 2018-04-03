@@ -37,7 +37,7 @@ const printErrors = (summary, errors) => {
   console.log(chalk.red(summary));
   console.log();
   errors.forEach((error) => {
-    console.log(chald.red(error.message || error));
+    console.log(chalk.red(error.message || error));
     console.log();
   });
 };
