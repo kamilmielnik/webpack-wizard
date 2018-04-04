@@ -1,6 +1,6 @@
 {
   "name": "webpack-wizard",
-  "version": "0.1.0-beta.8",
+  "version": "0.1.0-beta.9",
   "description": "Forget about maintaining webpack build process",
   "author": {
     "name": "Kamil Mielnik",
@@ -45,7 +45,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "1.1.11",
     "fs-extra": "^5.0.0",
-    "html-webpack-plugin": "3.2.0",
+    "html-webpack-plugin": "git://github.com/jantimon/html-webpack-plugin.git#webpack-4",
     "image-webpack-loader": "4.2.0",
     "inquirer": "^5.2.0",
     "node-sass": "4.8.3",
