@@ -1,5 +1,5 @@
 module.exports = (wizardConfig) => ({
-  namedModules: true
+  namedModules: true,
   splitChunks: {
     name: 'vendor',
     minChunks: 2
