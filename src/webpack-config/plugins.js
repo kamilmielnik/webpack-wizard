@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (wizardConfig) => [
@@ -32,7 +31,6 @@ const createHtmlPlugin = (wizardConfig) => new HtmlWebpackPlugin({
 
 const createProdPlugins = (wizardConfig) => [
   createExtractTextPlugin(wizardConfig),
-  createStyleExtPlugin(wizardConfig),
   createCopyPlugin(wizardConfig)
 ];
 
@@ -41,8 +39,6 @@ const createExtractTextPlugin = (wizardConfig) => new ExtractTextPlugin({
   filename: wizardConfig.output.css,
   ignoreOrder: true
 });
-
-const createStyleExtPlugin = () => new StyleExtHtmlWebpackPlugin();
 
 const createCopyPlugin = (wizardConfig) => new CopyWebpackPlugin([
   {
