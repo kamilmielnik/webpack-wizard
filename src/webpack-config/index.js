@@ -15,12 +15,14 @@ module.exports = (config) => {
 
 const createWebpackConfig = (wizardConfig) => {
   const webpackConfig = {};
+  webpackConfig.mode = 'production';
   webpackConfig.entry = createEntryConfig(wizardConfig);
   webpackConfig.module = createModuleConfig(wizardConfig);
   webpackConfig.output = createOutputConfig(wizardConfig);
   webpackConfig.plugins = createPluginsConfig(wizardConfig);
   webpackConfig.resolve = createResolveConfig(wizardConfig);
   if (wizardConfig.isDev) {
+    webpackConfig.mode = 'development';
     webpackConfig.devtool = 'eval';
   }
   webpackConfig[WEBPACK_CONFIG] = true;
