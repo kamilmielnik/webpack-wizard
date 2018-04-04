@@ -1,6 +1,7 @@
 const { WEBPACK_CONFIG } = require('../constants');
 const createEntryConfig = require('./entry');
 const createModuleConfig = require('./module');
+const createOptimizationConfig = require('./optimization');
 const createOutputConfig = require('./output');
 const createPluginsConfig = require('./plugins');
 const createResolveConfig = require('./resolve');
@@ -18,6 +19,7 @@ const createWebpackConfig = (wizardConfig) => {
   webpackConfig.mode = 'production';
   webpackConfig.entry = createEntryConfig(wizardConfig);
   webpackConfig.module = createModuleConfig(wizardConfig);
+  webpackConfig.optimization = createOptimizationConfig(wizardConfig);
   webpackConfig.output = createOutputConfig(wizardConfig);
   webpackConfig.plugins = createPluginsConfig(wizardConfig);
   webpackConfig.resolve = createResolveConfig(wizardConfig);

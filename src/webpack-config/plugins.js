@@ -32,8 +32,7 @@ const createHtmlPlugin = (wizardConfig) => new HtmlWebpackPlugin({
 
 const createProdPlugins = (wizardConfig) => [
   createExtractTextPlugin(wizardConfig),
-  createStyleExtPlugin(),
-  createUglifyPlugin(),
+  createStyleExtPlugin(wizardConfig),
   createCopyPlugin(wizardConfig)
 ];
 
@@ -44,14 +43,6 @@ const createExtractTextPlugin = (wizardConfig) => new ExtractTextPlugin({
 });
 
 const createStyleExtPlugin = () => new StyleExtHtmlWebpackPlugin();
-
-const createUglifyPlugin = () => new webpack.optimize.UglifyJsPlugin({
-  compress: {
-    warnings: false
-  },
-  mangle: true,
-  sourceMap: false
-});
 
 const createCopyPlugin = (wizardConfig) => new CopyWebpackPlugin([
   {
