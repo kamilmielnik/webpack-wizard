@@ -10,15 +10,19 @@ module.exports = (argv, webpackConfig) => {
       process.exit(1);
     }
 
-    if (stats.compilation.errors.length) {
-      printErrors('Failed to compile.', stats.compilation.errors);
+    const compilation = stats.compilation;
+    const errors = compilation && compilation.errors;
+    const warnings = compilation && compilation.warnings;
+
+    if (errors && errors.length) {
+      printErrors('Failed to compile.', errors);
       process.exit(1);
     }
 
-    if (process.env.CI && stats.compilation.warnings.length) {
+    if (process.env.CI && warnings && warnings.length) {
       printErrors(
         'Failed to compile. When process.env.CI = true, warnings are treated as failures. Most CI servers set this automatically.',
-        stats.compilation.warnings
+        warnings
       );
       process.exit(1);
     }
@@ -28,8 +32,7 @@ module.exports = (argv, webpackConfig) => {
       chunks: false,
       colors: true
     }));
-    console.log('\x1b[0m');
-    console.log('Compiled successfully.');
+    console.log(chalk.green('Compiled successfully.'));
   });
 };
 
