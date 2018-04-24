@@ -33,7 +33,7 @@ All you have to do after installing is one of the following:
 Bring your own libraries or check out the [boilerplates](#boilerplates).
 
 ## What's inside
-- webpack 3
+- webpack 4
 - babel 7
   - babel-core
   - babel-preset-es2015
