@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const history = require('connect-history-api-fallback');
 const express = require('express');
+const open = require('open');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -17,6 +18,7 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
 
   console.log('Starting compilation...');
   app.use(webpackDevMiddleware(compiler, {
+    open: true,
     publicPath: webpackConfig.output.publicPath,
     stats: 'minimal',
     watchOptions: {
@@ -49,5 +51,6 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
     }
 
     isServerUp = true;
+    open(url);
   });
 };
