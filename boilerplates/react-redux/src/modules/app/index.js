@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { initializeApp } from 'app/state';
 import App from './components';
-import styles from './styles.scss';
 
 const mapDispatchToProps = (dispatch) => ({
   onMount: () => dispatch(initializeApp())

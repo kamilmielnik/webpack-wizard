@@ -1,4 +1,3 @@
-import 'node-normalize-scss/_normalize.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
