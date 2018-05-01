@@ -4,9 +4,10 @@ const webpack = require('webpack');
 module.exports = (argv, webpackConfig) => {
   const compiler = webpack(webpackConfig);
   console.log('Starting compilation...');
+
   compiler.run((error, stats) => {
     if (error) {
-      printErrors('Failed to compile.', [ err ]);
+      printErrors('Failed to compile.', [ error ]);
       process.exit(1);
     }
 

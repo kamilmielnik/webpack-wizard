@@ -6,8 +6,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 module.exports = (argv, webpackConfig, webpackWizardConfig) => {
-  const host = webpackWizardConfig.devHost;
-  const port = webpackWizardConfig.devPort;
+  const url = `http://${webpackWizardConfig.devHost}:${webpackWizardConfig.devPort}`;
+  const logStartMessage = () => console.log(chalk.green(`Web server is listening at ${url}`));
   const compiler = webpack(webpackConfig);
   const app = express();
   let isFirstBuildComplete = false;
@@ -20,7 +20,7 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
     publicPath: webpackConfig.output.publicPath,
     stats: 'minimal',
     watchOptions: {
-      aggregateTimeout: 300,
+      aggregateTimeout: 100,
       poll: true
     }
   }));
@@ -39,7 +39,7 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
     response.sendFile(webpackWizardConfig.input.html);
   });
 
-  app.listen(port, host, (error) => {
+  app.listen(webpackWizardConfig.devPort, webpackWizardConfig.devHost, (error) => {
     if (error) {
       return console.log(chalk.red(error));
     }
@@ -50,8 +50,4 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
 
     isServerUp = true;
   });
-
-  function logStartMessage() {
-    console.log(chalk.green(`Web server is listening at http://${host}:${port}`));
-  }
 };

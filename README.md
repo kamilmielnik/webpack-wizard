@@ -244,13 +244,13 @@ module.exports = webpackConfig;
 ## Boilerplates
 Webpack Wizard has one experimental built-in boilerplate: `react-redux`. You can use it in the following way:
 ```
-npm install -g webpack-wizard               # installs webpack-wizard command globally (you only need to do this once)
-cd /my-projects                             # go to a directory, which you want to become a parent directory for your new project
-webpack-wizard boil react-redux my-project  # run webpack-wizard boilerplate generator (WARNING: this will take a while, be patient)
-                                            #   - specify `react-redux` boilerplate
-                                            #   - specify name for your project (here: `my-project`)
-cd my-project                               # open freshly created directory
-npm start                                   # you're good to go, you can run your development server
-npm run build                               # or production build
-npm run start:prod                          # and then serve it with simple http server
+npm install -g webpack-wizard    # installs webpack-wizard command globally (you only need to do this once)
+cd /my-projects                  # go to a directory, which you want to become a parent directory for your new project
+webpack-wizard boil              # run webpack-wizard boilerplate generator - you will be asked some questions about your new project
+# when you answer the questions, npm install will be executed (among other things), so this will take a while
+
+cd my-project                    # open freshly created directory
+npm start                        # you're good to go, you can run your development server
+npm run build                    # or production build
+npm run start:prod               # and then serve it with simple http server
 ```

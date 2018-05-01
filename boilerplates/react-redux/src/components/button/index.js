@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
-const Button = ({ className, children, ...props }) => (
+const Button = ({ children, className, ...props }) => (
   <div className={classNames(styles.button, className)} {...props}>
     {children}
   </div>
