@@ -1,19 +1,32 @@
 # Webpack Wizard
 ## Table of Contents
-1. [Description](#description)
-2. [What's inside](#whats-inside)
-3. [Usage](#usage)
+1. [Quick start](#quick-start)
+2. [Description](#description)
+3. [What's inside](#whats-inside)
+4. [Usage](#usage)
     1. [Install](#install)
     2. [Configure or... not](#configure-or-not)
     3. [Project structure for the default config](#project-structure-for-the-default-config)
     4. [Add npm scripts](#add-npm-scripts)
     5. [Development server](#development-server)
     6. [Production build](#production-build)
-4. [Config](#config)
+5. [Config](#config)
     1. [Complete example](#complete-example)
     2. [Customization](#customization)
     3. [Real-world examples](#real-world-examples)
-5. [Boilerplates](#boilerplates)
+6. [Boilerplates](#boilerplates)
+
+## Quick start
+```
+npm i -g webpack-wizard
+cd /my-projects
+webpack-wizard boil # you will be asked some questions about your new project
+cd my-new-project
+npm start
+
+# now you have all the goodness of latest webpack, babel, react-hot-loader, scss,
+# react, react-router, redux, redux-saga reselect, re-reselect etc. without any configuration
+```
 
 ## Description
 Webpack Wizard is an opinionated build process tool, that is meant to:
