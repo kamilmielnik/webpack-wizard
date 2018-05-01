@@ -35,13 +35,13 @@ const injectParametersToFile = (filepath, parameters) => {
 
 const installDependencies = () => {
   console.log('Installing dependencies...');
-  execSync('npm install');
+  execSync('npm install', { stdio: [ 0, 1, 2 ] });
   console.log(chalk.green('Dependencies installed.'));
 };
 
 const installWebpackWizard = () => {
   console.log('Installing webpack-wizard...');
-  execSync(`npm install webpack-wizard`);
+  execSync(`npm install webpack-wizard`, { stdio: [ 0, 1, 2 ] });
   console.log(chalk.green('webpack-wizard installed.'));
 };
 

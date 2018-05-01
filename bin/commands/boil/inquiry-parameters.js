@@ -37,6 +37,13 @@ const inquiryLicense = {
   default: 'MIT'
 };
 
+const inquiryLanguage = {
+  type: 'input',
+  name: 'language',
+  message: 'HTML lang',
+  default: 'en'
+};
+
 const inquiryAuthor = {
   type: 'input',
   name: 'authorName',
@@ -55,6 +62,7 @@ const questions = [
   inquiryTitle,
   inquiryVersion,
   inquiryLicense,
+  inquiryLanguage,
   inquiryAuthor,
   inquiryAuthorEmail
 ];

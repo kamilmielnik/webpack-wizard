@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const path = require('path');
 const {
   copyBoilerplateFiles,
   createDirectoryIfNotExists,
@@ -17,8 +18,10 @@ module.exports = () => {
     installWebpackWizard();
     copyBoilerplateFiles(boilerplate);
     installDependencies();
-    injectParametersToFile('package.json', answers);
-    injectParametersToFile('html/index.html', answers);
+    const packageJsonFilepath = path.resolve(process.cwd(), 'package.json');
+    const indexHtmlFilepath = path.resolve(process.cwd(), 'html/index.html');
+    injectParametersToFile(packageJsonFilepath, answers);
+    injectParametersToFile(indexHtmlFilepath, answers);
     console.log(chalk.green(`Boiling "${boilerplate}" complete.`));
   });
 };
