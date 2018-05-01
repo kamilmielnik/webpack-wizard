@@ -33,9 +33,9 @@ const injectParametersToFile = (filepath, parameters) => {
   console.log(chalk.green(`"${filepath}" updated.`));
 };
 
-const installDependencies = () => {
-  console.log('Installing dependencies...');
-  execSync('npm install', { stdio: [ 0, 1, 2 ] });
+const installDependencies = (only) => {
+  console.log(`Installing ${only} dependencies...`);
+  execSync(`npm install --only=${only}`, { stdio: [ 0, 1, 2 ] });
   console.log(chalk.green('Dependencies installed.'));
 };
 

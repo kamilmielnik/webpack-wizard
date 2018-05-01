@@ -17,7 +17,8 @@ module.exports = () => {
     process.chdir(name);
     installWebpackWizard();
     copyBoilerplateFiles(boilerplate);
-    installDependencies();
+    installDependencies('development');
+    installDependencies('production');
     const packageJsonFilepath = path.resolve(process.cwd(), 'package.json');
     const indexHtmlFilepath = path.resolve(process.cwd(), 'html/index.html');
     injectParametersToFile(packageJsonFilepath, answers);
