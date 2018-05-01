@@ -26,7 +26,7 @@ const injectParametersToFile = (filepath, parameters) => {
   console.log(`Updating "${filepath}..."`);
   const file = fs.readFileSync(filepath, 'utf-8');
   const updatedFile = Object.keys(parameters).reduce(
-    (updated, key) => updated.replace(new RegExp(`\$${key}`, 'g'), parameters[key]),
+    (updated, key) => updated.replace(new RegExp(`\\$${key}`, 'g'), parameters[key]),
     file
   );
   fs.writeFileSync(filepath, updatedFile);

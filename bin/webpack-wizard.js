@@ -29,6 +29,8 @@ yargs
     describe: 'Path to webpack-wizard config',
     type: 'string'
   })
+  .alias('v', 'version')
+  .version()
   .help()
   .argv;
 
