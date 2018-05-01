@@ -44,6 +44,7 @@ Bring your own libraries or check out the [boilerplates](#boilerplates).
   - extract-text-webpack-plugin
   - html-webpack-plugin
   - style-ext-html-webpack-plugin
+  - webpack-bundle-analyzer
 - webpack loaders
   - babel-loader
   - css-loader
@@ -58,6 +59,7 @@ Bring your own libraries or check out the [boilerplates](#boilerplates).
   - react-hot-loader
   - webpack-dev-middleware
   - webpack-hot-middleware
+  - open
 - node-sass
 
 ## Usage
@@ -236,6 +238,10 @@ module.exports = webpackConfig;
     - [www](http://scrabble-solver.kamilmielnik.com/)
     - [github](https://github.com/kamilmielnik/scrabble-solver/blob/master/scrabble-solver-frontend)
     - [webpack-wizard.config.js](https://github.com/kamilmielnik/scrabble-solver/blob/master/scrabble-solver-frontend/webpack-wizard.config.js)
+  - Codeball
+    - [www](http://codeball.kamilmielnik.com/)
+    - [github](https://github.com/codeball-team/codeball-frontend/)
+    - [webpack-wizard.config.js](https://github.com/codeball-team/codeball-frontend/blob/master/webpack-wizard.config.js)
   - Sprouts
     - [www](http://sprouts.kamilmielnik.com/)
     - [github](https://github.com/kamilmielnik/sprouts/)
@@ -247,6 +253,7 @@ Webpack Wizard has one experimental built-in boilerplate: `react-redux`. You can
 npm install -g webpack-wizard    # installs webpack-wizard command globally (you only need to do this once)
 cd /my-projects                  # go to a directory, which you want to become a parent directory for your new project
 webpack-wizard boil              # run webpack-wizard boilerplate generator - you will be asked some questions about your new project
+
 # when you answer the questions, npm install will be executed (among other things), so this will take a while
 
 cd my-project                    # open freshly created directory

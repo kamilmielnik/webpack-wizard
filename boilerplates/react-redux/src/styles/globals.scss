@@ -1,5 +1,5 @@
 $primary: #7f2853;
-$app-background-color: #ffffff;
+$app-background-color: white;
 $font-family: 'Lato', sans-serif;
 $font-size: 13px;
 
@@ -10,11 +10,11 @@ $font-size: 13px;
   user-select: none;
 
   &:hover {
-    background-color: mix($background-color, #ffffff, 90%);
+    background-color: mix($background-color, white, 90%);
   }
 
   &:active {
-    background-color: mix($background-color, #000000, 90%);
+    background-color: mix($background-color, black, 90%);
   }
 }
 
