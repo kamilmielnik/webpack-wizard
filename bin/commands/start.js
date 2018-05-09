@@ -18,11 +18,10 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
 
   console.log('Starting compilation...');
   app.use(webpackDevMiddleware(compiler, {
-    open: true,
     publicPath: webpackConfig.output.publicPath,
     stats: 'minimal',
     watchOptions: {
-      aggregateTimeout: 100,
+      aggregateTimeout: 200,
       poll: true
     }
   }));
@@ -32,6 +31,7 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
   compiler.plugin('done', () => {
     if (!isFirstBuildComplete && isServerUp) {
       logStartMessage();
+      open(url);
     }
 
     isFirstBuildComplete = true;
@@ -48,9 +48,9 @@ module.exports = (argv, webpackConfig, webpackWizardConfig) => {
 
     if (isFirstBuildComplete) {
       logStartMessage();
+      open(url);
     }
 
     isServerUp = true;
-    open(url);
   });
 };

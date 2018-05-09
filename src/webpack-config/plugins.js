@@ -47,6 +47,5 @@ const createCopyPlugin = (wizardConfig) => new CopyWebpackPlugin([
 ]);
 
 const createDevPlugins = () => [
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NamedModulesPlugin()
+  new webpack.HotModuleReplacementPlugin()
 ];

@@ -38,6 +38,7 @@ Webpack Wizard is an opinionated build process tool, that is meant to:
   - SCSS
   - CSS modules
   - EJS templates
+  - Autoprefixer
 
 All you have to do after installing is one of the following:
 - set `NODE_ENV` env variable to `production` or `development`
@@ -143,15 +144,16 @@ If you'll go with the function, it will be invoked with 2 arguments:
 All paths you provide should be absolute, except for `stylesGlobals` option. All default paths are relative to your current working directory.
 
 ### Webpack Wizard config object
-| Name      | Type                 | Default value                            | Description                                                                                                      |
-|-----------|----------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| `isDev`   | `Boolean`            | `process.env.NODE_ENV === 'development'` | development build flag                                                                                           |
-| `isProd`  | `Boolean`            | `process.env.NODE_ENV === 'production'`  | production build flag                                                                                            |
-| `devHost` | `String`             | `'localhost'`                            | development server host                                                                                          |
-| `devPort` | `Number`             | `3000`                                   | development server port                                                                                          |
-| `env`     | `Object`             | `process.env \|\| {}`                    | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
-| `input`   | `Object` (see below) | `{}`                                     | object that holds absolute paths for your sources                                                                |
-| `output`  | `Object` (see below) | `{}`                                     | object that holds absolute paths for what will be produced by webpack                                            |
+| Name               | Type                 | Default value                            | Description                                                                                                      |
+|--------------------|----------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| `isDev`            | `Boolean`            | `process.env.NODE_ENV === 'development'` | development build flag                                                                                           |
+| `isProd`           | `Boolean`            | `process.env.NODE_ENV === 'production'`  | production build flag                                                                                            |
+| `devHost`          | `String`             | `'localhost'`                            | development server host                                                                                          |
+| `devPort`          | `Number`             | `3000`                                   | development server port                                                                                          |
+| `env`              | `Object`             | `process.env \|\| {}`                    | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
+| `input`            | `Object` (see below) | `{}`                                     | object that holds absolute paths for your sources                                                                |
+| `output`           | `Object` (see below) | `{}`                                     | object that holds absolute paths for what will be produced by webpack                                            |
+| `useBabelPolyfill` | `Boolean`            | `false`                                  | set to `true` to inject `@babel/polyfill` into your bundle                                                       |
 
 #### input
 `input` should be an `Object` with the following attributes:

@@ -17,7 +17,7 @@ export default (history) => {
   return store;
 };
 
-const createEnhancer = (history) => compose(applyMiddleware(
+const createEnhancer = (history) => composer(applyMiddleware(
   sagaMiddleware,
   routerMiddleware(history)
 ));

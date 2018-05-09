@@ -1,15 +1,19 @@
 module.exports = (wizardConfig) => {
+  const entry = [];
+
+  if (wizardConfig.useBabelPolyfill) {
+    entry.push('@babel/polyfill');
+  }
+
   if (wizardConfig.isDev) {
-    return [
-      '@babel/polyfill',
+    entry.push(
       'webpack-hot-middleware/client',
       'react-hot-loader/patch',
       wizardConfig.input.jsDev
-    ];
+    );
+    return entry;
   }
 
-  return [
-    '@babel/polyfill',
-    wizardConfig.input.js
-  ];
+  entry.push(wizardConfig.input.js);
+  return entry;
 };
