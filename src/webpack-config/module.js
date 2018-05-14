@@ -49,7 +49,13 @@ const createImageRules = () => ({
       loader: 'file-loader'
     },
     {
-      loader: 'image-webpack-loader'
+      loader: 'image-webpack-loader',
+      options: {
+        mozjpeg: {
+          progressive: true,
+          quality: 100
+        }
+      }
     }
   ]
 });
