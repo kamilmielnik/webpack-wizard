@@ -144,6 +144,8 @@ const createJsRules = (wizardConfig) => ({
         ...getBabelStage1Plugins(),
         ...getBabelStage2Plugins(),
         ...getBabelStage3Plugins(),
+        require.resolve('@babel/plugin-transform-regenerator'),
+        require.resolve('@babel/plugin-syntax-async-generators'),
         require.resolve('react-hot-loader/babel')
       ]
     }

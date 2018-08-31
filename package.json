@@ -1,6 +1,6 @@
 {
   "name": "webpack-wizard",
-  "version": "0.1.0-beta.25",
+  "version": "0.1.0-beta.26",
   "description": "Forget about maintaining webpack build process",
   "author": {
     "name": "Kamil Mielnik",
@@ -46,8 +46,10 @@
     "@babel/plugin-proposal-optional-chaining": "7.0.0",
     "@babel/plugin-proposal-pipeline-operator": "7.0.0",
     "@babel/plugin-proposal-throw-expressions": "7.0.0",
+    "@babel/plugin-syntax-async-generators": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
     "@babel/plugin-syntax-import-meta": "7.0.0",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
     "@babel/polyfill": "7.0.0",
     "@babel/preset-env": "7.0.0",
     "@babel/preset-react": "7.0.0",
