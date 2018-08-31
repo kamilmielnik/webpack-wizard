@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
 import configureStore from 'store/configure';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import App from 'modules/app';
 
 export default (Wrapper) => {

@@ -1,4 +1,4 @@
-import { routerMiddleware } from 'react-router-redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxSaga from 'redux-saga';
@@ -11,7 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 const initialState = undefined;
 
 export default (history) => {
-  const store = createStore(reducer, initialState, createEnhancer(history));
+  const store = createStore(connectRouter(history)(reducer), initialState, createEnhancer(history));
   sagaMiddleware.run(sagas);
   enableHmrForReducers(store);
   return store;
