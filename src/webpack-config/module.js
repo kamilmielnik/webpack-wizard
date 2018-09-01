@@ -80,11 +80,11 @@ const createCssRules = (wizardConfig, extractSass) => ({
           minimize: true
         }
       },
-      {
+      wizardConfig.isProd && {
         loader: 'postcss-loader',
         options: postcssOptions
       }
-    ]
+    ].filter(Boolean)
   })
 });
 

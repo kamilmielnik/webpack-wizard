@@ -153,7 +153,7 @@ All paths you provide should be absolute, except for `stylesGlobals` option. All
 | `env`              | `Object`             | `process.env \|\| {}`                    | object that will effectively become available as `process.env` in your app - use it to handle your env variables |
 | `input`            | `Object` (see below) | `{}`                                     | object that holds absolute paths for your sources                                                                |
 | `output`           | `Object` (see below) | `{}`                                     | object that holds absolute paths for what will be produced by webpack                                            |
-| `useBabelPolyfill` | `Boolean`            | `false`                                  | set to `true` to inject `@babel/polyfill` into your bundle                                                       |
+| `useBabelPolyfill` | `Boolean`            | `true`                                   | set to `true` to inject `@babel/polyfill` into your bundle                                                       |
 
 #### input
 `input` should be an `Object` with the following attributes:

@@ -16,7 +16,7 @@ const createWebpackWizardConfig = (wizardConfig = {}) => ({
   env: cloneEnvVariables(wizardConfig.env || process.env || {}),
   input: applyInputDefaults(wizardConfig.input || {}),
   output: applyOutputDefaults(wizardConfig.output || {}),
-  useBabelPolyfill: wizardConfig.useBabelPolyfill || false
+  useBabelPolyfill: wizardConfig.useBabelPolyfill === undefined ? true : wizardConfig.useBabelPolyfill
 });
 
 const cloneEnvVariables = (source) => Object.keys(source).reduce(
