@@ -1,6 +1,6 @@
 {
   "name": "webpack-wizard",
-  "version": "0.1.0-beta.27",
+  "version": "0.1.0-beta.28",
   "description": "Forget about maintaining webpack build process",
   "author": {
     "name": "Kamil Mielnik",
@@ -54,6 +54,7 @@
     "@babel/preset-env": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-stage-0": "7.0.0",
+    "autoprefixer": "^9.1.3",
     "babel-loader": "8.0.0",
     "chalk": "2.4.1",
     "connect-history-api-fallback": "1.5.0",
