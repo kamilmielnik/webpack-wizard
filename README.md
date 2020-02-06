@@ -1,4 +1,7 @@
 # Webpack Wizard
+
+## THIS PROJECT IS DEPRECATED. REACT-SCRIPTS v2.0.0+ GIVES YOU ALL THE FEATURES AVAILABLE HERE
+
 ## Table of Contents
 1. [Quick start](#quick-start)
 2. [Description](#description)
